@@ -1,6 +1,6 @@
 export default function Header(){
     return(
-        <div className="grid five_cols">
+        <div className="grid five_cols centered_items nav_bar">
             <p>CompanyName</p>
             <a href={"/products"}>Products</a>
             <a>About Us</a>
