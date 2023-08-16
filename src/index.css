@@ -1,0 +1,31 @@
+*{box-sizing: border-box}
+html{
+  font-family: "Indie Flower";
+}
+.grid{
+  display: grid;
+}
+.five_cols{
+grid-template-columns: auto auto auto auto auto;
+}
+.two_cols{
+  grid-template-columns: auto auto;
+}
+.four_cols{
+  grid-template-columns: auto auto auto auto;
+}
+.three_cols{
+  grid-template-columns: auto auto auto;
+}
+.centered_items{
+  place-items: center;
+}s
+.hero{
+  background-image: url("/src/assets/react.svg");
+}
+.center_text{
+  text-align: center;
+}
+.block{
+  display: block;
+}
