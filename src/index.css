@@ -26,6 +26,12 @@ grid-template-columns: auto auto auto auto auto;
 .center_text{
   text-align: center;
 }
+.styled_card{
+  width: 80%;
+}
 .block{
   display: block;
+}
+.centered_item{
+  place-self: center;
 }

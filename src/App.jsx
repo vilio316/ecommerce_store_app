@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Button, Typography} from '@mui/material';
+import { Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Fab, Icon, IconButton, Rating, Typography} from '@mui/material';
 import demoImg from './assets/react.svg'
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import "./index.css"
+import { ShoppingCart } from '@mui/icons-material';
 function App() {
   function Hero(){
     return(
@@ -11,7 +12,7 @@ function App() {
         <div className="grid centered_items" style={{width: "50%"}}>
             <p>The Company Name</p>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus tempora sint inventore quae provident possimus minus, totam, dolorum blanditiis earum unde laudantium rem ratione magnam ipsum repellendus beatae aspernatur minima.</p>
-            <Button variant='contained' color="success" style={{fontFamily:"Indie Flower", textTransform:"lowercase", borderRadius:"1.5rem", backgroundColor:"orange"}}>Discover our Collection</Button>
+            <Button variant='contained' color="error" style={{fontFamily:"Indie Flower"}} onClick={()=> console.log("Wryyyyyyyyyy")} size='small'>Discover our Collection</Button>
         </div>
       </div>
     )
@@ -24,66 +25,18 @@ function App() {
           <p>A selection of some of our finest products</p>
           </Typography>
         <div className='grid centered_items four_cols'>
-          <div>
-            <div>
-            <img src={demoImg} alt="product-image"/>
-            </div>
-        <div>
-          <p>Spiced PlumBerries</p>
-          <p style={{textAlign:"end"}}>&copy; 6599</p>
-        </div>
-        </div>
-
-        <div>
-            <div>
-            <img src={demoImg} alt="product-image"/>
-            </div>
-        <div>
-          <p>Spiced PlumBerries</p>
-          <p style={{textAlign:"end"}}>&copy; 6599</p>
-        </div>
-        </div>
-
-        <div>
-            <div>
-            <img src={demoImg} alt="product-image"/>
-            </div>
-        <div>
-          <p>Spiced PlumBerries</p>
-          <p style={{textAlign:"end"}}>&copy; 6599</p>
-        </div>
-        </div>
-
-        <div>
-            <div>
-            <img src={demoImg} alt="product-image"/>
-            </div>
-        <div>
-          <p>Spiced PlumBerries</p>
-          <p style={{textAlign:"end"}}>&copy; 6599</p>
-        </div>
-        </div>
-
-        <div>
-            <div>
-            <img src={demoImg} alt="product-image"/>
-            </div>
-        <div>
-          <p>Spiced PlumBerries</p>
-          <p style={{textAlign:"end"}}>&copy; 6599</p>
-        </div>
-        </div>
-
-        <div>
-            <div>
-            <img src={demoImg} alt="product-image"/>
-            </div>
-        <div>
-          <p>Spiced PlumBerries</p>
-          <p style={{textAlign:"end"}}>&copy; 6599</p>
-        </div>
-        </div>
-
+            <Card className='styled_card'>
+              <CardActionArea LinkComponent={"a"} href='/products'>
+                <CardMedia component="img" alt="Placeholder Image: React Logo" src={demoImg} style={{padding: "0.5rem"}}></CardMedia>
+                <CardHeader style={{fontSize: "1.75rem"}} title="Screams Internally"/>
+                <CardContent>
+                  <p>A destroyed piece of fictional bs with...</p>
+                  <p>$ 6.99</p><IconButton aria-label='shopping_cart'>
+                    <ShoppingCart/>
+                  </IconButton>
+                </CardContent>
+              </CardActionArea>
+            </Card>
         </div>
         </div>
       )
@@ -93,7 +46,7 @@ function App() {
       return(
         <div className='grid two_cols'>
           <div>
-            <Typography>Clean and fragrant soy wax</Typography>
+            <Typography paragraph>Clean and fragrant soy wax</Typography>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet sed amet excepturi tempore nam hic culpa pariatur aliquid atque, nobis voluptatem quidem ipsa, error perferendis quia provident sit iste.</p>
           </div>
           <div>
@@ -125,12 +78,10 @@ function App() {
     }
   return (
     <>
-    <Header/>
     <Hero/>
     <Products/>
     <NextSection/>
     <Testimonials/>
-    <Footer/>
     </>
   )
 }
