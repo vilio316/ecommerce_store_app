@@ -1,4 +1,4 @@
-import { ContactMailRounded, ShoppingCartRounded } from "@mui/icons-material";
+import { Person, ShoppingCartRounded } from "@mui/icons-material";
 import { Badge, Icon, IconButton } from "@mui/material";
 
 export default function Header(){
@@ -10,11 +10,13 @@ export default function Header(){
             <a>Contact Us</a>
             <div className="grid centered_items two_cols">
         <IconButton>
-            <ContactMailRounded/>
+            <Person color="secondary"/>
         </IconButton>
         <IconButton>
+        <Badge badgeContent={0} color="success">
             <ShoppingCartRounded color="success"/>
-        </IconButton>
+       </Badge> 
+       </IconButton>
             </div>
         </div>
     )

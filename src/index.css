@@ -1,6 +1,6 @@
 *{box-sizing: border-box}
-html{
-  font-family: "Indie Flower";
+p{
+  font-family: "Montserrat", monospace;
 }
 .grid{
   display: grid;
@@ -19,7 +19,7 @@ grid-template-columns: auto auto auto auto auto;
 }
 .centered_items{
   place-items: center;
-}s
+}
 .hero{
   background-image: url("/src/assets/react.svg");
 }
@@ -28,10 +28,20 @@ grid-template-columns: auto auto auto auto auto;
 }
 .styled_card{
   width: 80%;
+  border-radius: 1.5rem;
+}
+.card_image{
+  padding: 1rem;
 }
 .block{
   display: block;
 }
 .centered_item{
   place-self: center;
+}
+.product_price{
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: block;
 }

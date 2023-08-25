@@ -1,42 +1,54 @@
-import { useState, useEffect } from 'react';
-import { Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Fab, Icon, IconButton, Rating, Typography} from '@mui/material';
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
+import { Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Fab, Icon, IconButton, Rating, ThemeProvider, Typography, createTheme} from '@mui/material';
 import demoImg from './assets/react.svg'
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import "./index.css"
-import { ShoppingCart } from '@mui/icons-material';
+import { testTheme } from './assets/mui_themes/themes';
+import { FavoriteRounded, HeartBroken, ShoppingCart } from '@mui/icons-material';
 function App() {
   function Hero(){
     return(
+      <ThemeProvider theme={testTheme}>      
       <div className="grid centered_items hero">
         <div className="grid centered_items" style={{width: "50%"}}>
-            <p>The Company Name</p>
+            <Typography paragraph variant="h4">The Company Name</Typography>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus tempora sint inventore quae provident possimus minus, totam, dolorum blanditiis earum unde laudantium rem ratione magnam ipsum repellendus beatae aspernatur minima.</p>
-            <Button variant='contained' color="error" style={{fontFamily:"Indie Flower"}} onClick={()=> console.log("Wryyyyyyyyyy")} size='small'>Discover our Collection</Button>
+            <Button variant='contained' color="error" onClick={()=> console.log("Wryyyyyyyyyy")} size='small'>Discover our Collection</Button>
         </div>
       </div>
+      </ThemeProvider>
     )
   }
 
     function Products(){
       return(
         <div>
-          <Typography className='center_text'><p>Products</p>
-          <p>A selection of some of our finest products</p>
+          <Typography variant='h4' className='center_text'>
+            <p>Products</p>
+            <Typography variant="h6">A selection of our finest products</Typography>
           </Typography>
         <div className='grid centered_items four_cols'>
+          <ThemeProvider theme={testTheme}>
             <Card className='styled_card'>
-              <CardActionArea LinkComponent={"a"} href='/products'>
-                <CardMedia component="img" alt="Placeholder Image: React Logo" src={demoImg} style={{padding: "0.5rem"}}></CardMedia>
-                <CardHeader style={{fontSize: "1.75rem"}} title="Screams Internally"/>
+                <CardMedia className="card_image" component="img" alt="Placeholder Image: React Logo" src={demoImg}></CardMedia>
                 <CardContent>
+                <CardActionArea LinkComponent={"a"} href='/products'>
+                  <Typography className='typ' variant="h5">Product Name</Typography>
                   <p>A destroyed piece of fictional bs with...</p>
-                  <p>$ 6.99</p><IconButton aria-label='shopping_cart'>
-                    <ShoppingCart/>
+                  <span className='product_price'>$ 6.99</span>
+                  </CardActionArea>
+
+                  <div className='grid'>
+                  <span style={{placeSelf:"end"}}>
+                  <IconButton aria-label='shopping_cart'>
+                    <ShoppingCart color="success"/>
                   </IconButton>
+                  <IconButton>
+                  <FavoriteRounded/>
+                  </IconButton>
+                  </span>
+                  </div>
                 </CardContent>
-              </CardActionArea>
             </Card>
+            </ThemeProvider>
         </div>
         </div>
       )
