@@ -13,7 +13,6 @@ export default function ProductInfo(){
             </div>
             </Grid>
             <Grid item xs={12} md={8}>
-                
             <Card>
                 <CardContent>
                     <Typography variant="h6">Spiced Plumberries</Typography>
@@ -25,13 +24,15 @@ export default function ProductInfo(){
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora aspernatur voluptates aliquid numquam, aut asperiores dicta optio ad, sed odit cumque sunt ipsam soluta eligendi, porro assumenda. Hic, placeat aspernatur.</p>
                     </div>
                     <label htmlFor="qty">
-                        Quantity: <input type="number" defaultValue={1} id="qty"></input>
+                        Quantity: <input type="number" defaultValue={1} min={1} max={10} id="qty"></input>
                     </label>
-                    <form>
+                    <form style={{margin: "0.5rem 0"}}>
                         <input type="radio" name="payplan"></input>
                         <label>One Time Purchase</label>
+                       
                         <input type="radio" name="payplan"></input>
                         <label>Instalments</label>
+                       
                        </form> 
                     <Button color="success" variant="outlined">
                         <AddShoppingCartSharp></AddShoppingCartSharp>
