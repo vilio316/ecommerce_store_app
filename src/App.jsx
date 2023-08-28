@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
-import { Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Fab, Icon, IconButton, Rating, ThemeProvider, Typography, createTheme} from '@mui/material';
+import { Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Fab, Grid, Icon, IconButton, Rating, ThemeProvider, Typography, createTheme} from '@mui/material';
 import demoImg from './assets/react.svg'
 import { testTheme } from './assets/mui_themes/themes';
 import { FavoriteRounded, HeartBroken, ShoppingCart } from '@mui/icons-material';
@@ -11,7 +11,7 @@ function App() {
         <div className="grid centered_items" style={{width: "50%"}}>
             <Typography paragraph variant="h4">The Company Name</Typography>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus tempora sint inventore quae provident possimus minus, totam, dolorum blanditiis earum unde laudantium rem ratione magnam ipsum repellendus beatae aspernatur minima.</p>
-            <Button variant='contained' color="error" onClick={()=> console.log("Wryyyyyyyyyy")} size='small'>Discover our Collection</Button>
+            <a href={"/products/"}><Button variant='contained' color="error" onClick={()=> console.log("Wryyyyyyyyyy")} size='small'>Discover our Collection</Button></a>
         </div>
       </div>
       </ThemeProvider>
@@ -23,8 +23,10 @@ function App() {
         <div>
           <Typography variant='h4' className='center_text'>
             <p>Products</p>
-            <Typography variant="h6">A selection of our finest products</Typography>
-          </Typography>
+            </Typography>
+            <Typography variant='subtitle1' className='center_text'>
+            <p>A selection of our finest products</p>
+            </Typography>
         <div className='grid centered_items four_cols'>
           <ThemeProvider theme={testTheme}>
             <Card className='styled_card'>
@@ -70,22 +72,23 @@ function App() {
 
     function Testimonials(){
       return(
-        <div className='grid centered_items'>
-          <div className='grid three_cols'>
-            <div>
+    <Grid container spacing={1.5}>
+          <Grid item xs={12} sm={4} md={4}>
               <img src={demoImg}/>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore laborum consectetur sed ad, fugit placeat ratione. Magni repellat iusto consequuntur. Impedit laboriosam repellendus officiis at accusantium, cumque facilis id atque.</p>
-            </div>
-            <div>
+        </Grid>
+
+        <Grid item xs={12} sm={4} md={4}>
               <img src={demoImg}/>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore laborum consectetur sed ad, fugit placeat ratione. Magni repellat iusto consequuntur. Impedit laboriosam repellendus officiis at accusantium, cumque facilis id atque.</p>
-            </div>
-            <div>
+        </Grid>
+
+        <Grid item xs={12} sm={4} md={4}>
               <img src={demoImg}/>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore laborum consectetur sed ad, fugit placeat ratione. Magni repellat iusto consequuntur. Impedit laboriosam repellendus officiis at accusantium, cumque facilis id atque.</p>
-            </div>
-          </div>
-        </div>
+        </Grid>
+
+    </Grid>
       )
     }
   return (

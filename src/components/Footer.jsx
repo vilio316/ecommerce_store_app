@@ -1,42 +1,43 @@
-import { Typography } from "@mui/material";
+import { Grid, ThemeProvider, Typography } from "@mui/material";
+import { testTheme } from "../assets/mui_themes/themes";
 
 export default function Footer(){
 
     return(
         <>
-        <div className="grid centered_items">
-            <hr style={{width:"100%"}}/>
-            <div className="grid four_cols" style={{width: "80%"}}>
-                <div>
+        <ThemeProvider theme={testTheme}>
+        <Grid container spacing={2}>  
+        <hr style={{width:"100%"}}/>
+        <Grid item xs={12} sm={5} >          
                     <Typography>CompanyName</Typography>
                     <p>Company Slogan/Brand Identity Wordle</p>
-                </div>
-                <div>
+                </Grid>
+                <Grid item xs={12} sm={2}>
                     <p>Products</p>
                     <a className="block">Product One</a>
                     <a className="block">Product Two</a>
                     <a className="block">Product Three</a>
-                </div>
-                <div>
+                </Grid>
+                <Grid item xs={12} sm={2}>
                     <p>Products</p>
                     <a className="block">Product One</a>
                     <a className="block">Product Two</a>
                     <a className="block">Product Three</a>
-                </div>
-                <div>
+                </Grid>
+                <Grid item xs={12} sm={2} alignContent={"center"} justifyContent={"center"}>
                     <p>Products</p>
                     <a className="block">Product One</a>
                     <a className="block">Product Two</a>
                     <a className="block">Product Three</a>
-                </div>
-            </div>            
-        </div>
+                </Grid>
+            </Grid>
         <div className="grid two_cols">
         <span>
             CompanyName &copy; 2023. All Rights Reserved.
         </span>
         <span style={{textAlign: "end"}}>Developed by <a href={"https://github.com/vilio316"}>vilio316</a></span>
     </div>
+    </ThemeProvider>
     </>
     )
 }

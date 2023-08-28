@@ -19,9 +19,7 @@ const availableRoutes = createBrowserRouter([{
   },
 },
 {
-  path: '/product/:productId', element : <ProductInfo/>, loader: ({params})=>{
-  return fetchProductInfo(params)
-}
+  path: '/product/:productId', element : <ProductInfo/>, 
 },
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

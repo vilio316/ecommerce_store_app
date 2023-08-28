@@ -2,7 +2,9 @@ import { Button, Card, CardContent, CardMedia, Grid, Icon, Rating, ThemeProvider
 import demoPic from "/src/assets/react.svg"
 import { AddShoppingCartSharp} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
+import { useLoaderData } from "react-router-dom"
 export default function ProductInfo(){
+    let product_data = useLoaderData();
     return(
         <>
         <ThemeProvider theme={testTheme}>

@@ -20,6 +20,10 @@ grid-template-columns: auto auto auto auto auto;
 .centered_items{
   place-items: center;
 }
+.centered_flex_items{
+align-content: center;
+justify-content: center;
+}
 .hero{
   background-image: url("/src/assets/react.svg");
 }
@@ -44,4 +48,10 @@ grid-template-columns: auto auto auto auto auto;
   font-size: 1.5rem;
   font-weight: bold;
   display: block;
+}
+@media screen and (max-width:768px) {
+  .grid{
+    grid-template-columns: auto;
+    place-items: center;
+  }
 }
