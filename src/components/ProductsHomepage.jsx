@@ -1,4 +1,4 @@
-import { Card, CardMedia, ThemeProvider, Typography, CardContent, CardActionArea, IconButton, Grid } from "@mui/material";
+import { Card, CardMedia, ThemeProvider, Typography, CardContent, CardActionArea, IconButton, Grid, ButtonGroup, Button } from "@mui/material";
 import { FavoriteRounded, ShoppingCart } from "@mui/icons-material";
 import { useLoaderData } from "react-router-dom";
 import { testTheme } from "../assets/mui_themes/themes";
@@ -6,18 +6,21 @@ import { testTheme } from "../assets/mui_themes/themes";
 export default function ProductsHomepage() {
     let products= useLoaderData();
     let ostriches = products.products;
-    return(
+        return(
         <>
         <ThemeProvider theme={testTheme}>
         <Typography paragraph variant="h4">All Products</Typography>
-        <Grid container spacing={1.5}>
-        {ostriches.map( (product) => <Grid item xs={12} md={3} key={product.id}><Card className="styled_card">
-            <CardMedia className="card_image" component={"img"} alt={`${product.title}`} src={product.thumbnail}/>
+        <Typography paragraph variant="h4">Showing {ostriches[0].id} - {ostriches[19].id}</Typography>
+        <Grid container spacing={1.5} marginBottom={1.5}>
+        {ostriches.map((product) => <Grid item xs={12} md={3} key={product.id}>
+          <Card className="styled_card">
         <CardContent>
+        
         <CardActionArea LinkComponent={"a"} href={`/product/${product.id}`}>
+        <CardMedia className="card_image" component={"img"} alt={product.title} src={product.images[0]} height={200}/>
           <Typography className='typ' variant="h5">{product.title}</Typography>
-          <p>{`${product.description}`}</p>
-          <span className='product_price'>${`${product.price}.99`}</span>
+          <p className="desc_p">{product.description}</p>
+          <p className='product_price'>${product.price.toFixed(2)}</p>
           </CardActionArea>
         
           <div className='grid'>
@@ -35,33 +38,17 @@ export default function ProductsHomepage() {
         </Grid>
         )}
         </Grid>
+        <Grid container justifyContent={"center"} marginBottom={2}>
+        <ButtonGroup>
+          <Button><a href={'/products/1'} className="no_deco">1</a></Button>
+          <Button><a href={'/products/2'} className="no_deco">2</a></Button>
+          <Button><a href={'/products/3'} className="no_deco">3</a></Button>
+          <Button><a href={'/products/4'} className="no_deco">4</a></Button>
+          <Button><a href={'/products/5'} className="no_deco">5</a></Button>
+        </ButtonGroup>
+        </Grid>
         </ThemeProvider>
         </>
     )
     }
 <ProductsHomepage/>
-
-
-
-/** <Card className='styled_card'>
-<CardMedia className="card_image" component="img" alt="Placeholder Image: React Logo" src={demoImg}></CardMedia>
-<CardContent>
-<CardActionArea LinkComponent={"a"} href='/products'>
-  <Typography className='typ' variant="h5">Product Name</Typography>
-  <p>A destroyed piece of fictional bs with...</p>
-  <span className='product_price'>$ 6.99</span>
-  </CardActionArea>
-
-  <div className='grid'>
-  <span style={{placeSelf:"end"}}>
-  <IconButton aria-label='shopping_cart'>
-    <ShoppingCart color="success"/>
-  </IconButton>
-  <IconButton>
-  <FavoriteRounded/>
-  </IconButton>
-  </span>
-  </div>
-</CardContent>
-</Card>
-</ThemeProvider>**/

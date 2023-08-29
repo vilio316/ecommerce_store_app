@@ -24,14 +24,14 @@ export default function Footer(){
                     <a className="block">Product Two</a>
                     <a className="block">Product Three</a>
                 </Grid>
-                <Grid item xs={12} sm={2} alignContent={"center"} justifyContent={"center"}>
+                <Grid item xs={12} sm={2} sx={{pt: 1}}>
                     <p>Products</p>
                     <a className="block">Product One</a>
                     <a className="block">Product Two</a>
                     <a className="block">Product Three</a>
                 </Grid>
             </Grid>
-        <div className="grid two_cols">
+        <div className="grid two_cols" style={{paddingTop: "0.5rem"}}>
         <span>
             CompanyName &copy; 2023. All Rights Reserved.
         </span>
