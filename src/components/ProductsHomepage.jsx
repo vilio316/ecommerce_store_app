@@ -1,11 +1,13 @@
 import { Card, CardMedia, ThemeProvider, Typography, CardContent, CardActionArea, IconButton, Grid, ButtonGroup, Button } from "@mui/material";
 import { FavoriteRounded, ShoppingCart } from "@mui/icons-material";
 import { useLoaderData } from "react-router-dom";
-import { testTheme } from "../assets/mui_themes/themes";
+import { testTheme, colors } from "../assets/mui_themes/themes";
+import { useState } from "react";
 
 export default function ProductsHomepage() {
     let products= useLoaderData();
     let ostriches = products.products;
+    let [isLiked, likeProd] = useState(false);
         return(
         <>
         <ThemeProvider theme={testTheme}>
@@ -28,9 +30,10 @@ export default function ProductsHomepage() {
           <IconButton aria-label='shopping_cart'>
             <ShoppingCart color="success"/>
           </IconButton>
-          <IconButton>
-          <FavoriteRounded/>
+          <IconButton onClick={()=> {likeProd(!isLiked); console.log(isLiked)}}>
+            <FavoriteRounded color={isLiked? "success": "" }/>
           </IconButton>
+
           </span>
           </div>
         </CardContent>
