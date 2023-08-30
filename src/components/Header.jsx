@@ -13,7 +13,7 @@ export default function Header(){
             <Person color="secondary"/>
         </IconButton>
         <IconButton>
-        <Badge badgeContent={2} color="success">
+        <Badge badgeContent={localStorage.length} color="success">
             <ShoppingCartRounded color="success"/>
        </Badge> 
        </IconButton>

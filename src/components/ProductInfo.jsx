@@ -2,8 +2,20 @@ import { Button, Card, CardContent, CardMedia, Grid, Icon, Rating, ThemeProvider
 import { AddShoppingCartSharp} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
+import Cart from "./Cart"
 export default function ProductInfo(){
     let product_data = useLoaderData();
+
+    const productCartDetails = {
+        name: `${product_data.title}`,
+        price: `${product_data.price}`,
+        quantity: 1,
+    }
+    function addToStorage(){
+        localStorage.setItem(`${product_data.title}`, JSON.stringify(productCartDetails));
+        console.log(localStorage)
+        console.log(localStorage.getItem(`${product_data.title}`))
+    }
     return(
         <>
         <ThemeProvider theme={testTheme}>
@@ -39,7 +51,7 @@ export default function ProductInfo(){
                         <label>Instalments</label>
                       
                       </form> 
-                    <Button color="success" variant="outlined">
+                    <Button color="success" variant="outlined" onClick={addToStorage}>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
                         Add to Cart
                     </Button>
@@ -48,6 +60,7 @@ export default function ProductInfo(){
        </Grid>
        </Grid>
        </ThemeProvider>
+       <Cart/>
        </>
 )
 }
