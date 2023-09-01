@@ -4,20 +4,13 @@ import { useLoaderData } from "react-router-dom";
 import { testTheme, colors } from "../assets/mui_themes/themes";
 import { useState } from "react";
 
-export default function ProductsHomepage() {
-    let products= useLoaderData();
-    let ostriches = products.products;
-    let [isLiked, likeProd] = useState(false);
-        return(
-        <>
-        <ThemeProvider theme={testTheme}>
-        <Typography paragraph variant="h4">All Products</Typography>
-        <Typography paragraph variant="h4">Showing {ostriches[0].id} - {ostriches[19].id}</Typography>
-        <Grid container spacing={1.5} marginBottom={1.5}>
-        {ostriches.map((product) => <Grid item xs={12} md={3} key={product.id}>
+function ProductCard(props){
+  let product = props.entry;
+let [omega, useOmega] = useState(true);
+return(
+  <Grid item xs={12} md={3} key={product.id}>
           <Card className="styled_card">
-        <CardContent>
-        
+        <CardContent>        
         <CardActionArea LinkComponent={"a"} href={`/product/${product.id}`}>
         <CardMedia className="card_image" component={"img"} alt={product.title} src={product.images[0]} height={200}/>
           <Typography className='typ' variant="h5">{product.title}</Typography>
@@ -30,8 +23,8 @@ export default function ProductsHomepage() {
           <IconButton aria-label='shopping_cart'>
             <ShoppingCart color="success"/>
           </IconButton>
-          <IconButton onClick={()=> {likeProd(!isLiked); console.log(isLiked)}}>
-            <FavoriteRounded color={isLiked? "success": "" }/>
+          <IconButton onClick={()=> {useOmega(!omega); console.log(omega)}}>
+            <FavoriteRounded color={omega? "": "success" }/>
           </IconButton>
 
           </span>
@@ -39,7 +32,19 @@ export default function ProductsHomepage() {
         </CardContent>
         </Card>
         </Grid>
-        )}
+)
+}
+
+export default function ProductsHomepage() {
+    let products= useLoaderData();
+    let ostriches = products.products;
+        return(
+        <>
+        <ThemeProvider theme={testTheme}>
+        <Typography paragraph variant="h4">All Products</Typography>
+        <Typography paragraph variant="h4">Showing {ostriches[0].id} - {ostriches[19].id}</Typography>
+        <Grid container spacing={1.5} marginBottom={1.5}>
+        {ostriches.map((product) => <ProductCard entry={product}/> )}
         </Grid>
         <Grid container justifyContent={"center"} marginBottom={2}>
         <ButtonGroup>
