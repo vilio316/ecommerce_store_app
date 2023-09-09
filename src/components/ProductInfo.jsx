@@ -1,19 +1,21 @@
 import { Button, Card, CardContent, CardMedia, Grid, Icon, Rating, ThemeProvider, Typography} from "@mui/material"
-import { AddShoppingCartSharp} from "@mui/icons-material"
+import { useState } from "react"
+import { AddShoppingCartSharp, Delete} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { addItem } from "../features/cart/cartSlice"
-import { pickSlice } from "../features/cart/cartSlice"
-import Cart from "./Cart"
+import { addItem, removeItem } from "../features/cart/cartSlice"
+import { itemAdded, itemRemoved } from "../features/cart/cartContentSlice"
 export default function ProductInfo(){
     let product_data = useLoaderData();
-    let slice_state = pickSlice;
     let dispatch = useDispatch();
+    let [qty, increaseQty] = useState(1);
     const productCartDetails = {
         name: `${product_data.title}`,
         price: `${product_data.price}`,
-        quantity: 1,
+        quantity: qty,
+        thumbnail: `${product_data.thumbnail}`,
+
     }
     return(
         <>
@@ -38,7 +40,7 @@ export default function ProductInfo(){
                     <div className="product_desc">
                       <p>{product_data.description}</p>
                     </div>
-                    <label htmlFor="qty">Quantity: <input type="number" defaultValue={1} min={1} max={10} id="qty"></input>
+                    <label htmlFor="qty">Quantity: <input type="number" defaultValue={1} min={1} max={10} onChange={(e)=> increaseQty(e.target.value)} id="qty"></input>
                    </label>
                    <form style={{margin: "0.5rem 0"}}>
                        <input type="radio" name="payplan"></input>
@@ -48,16 +50,29 @@ export default function ProductInfo(){
                         <label>Instalments</label>
                       
                       </form> 
-                    <Button color="success" variant="outlined" onClick={()=> dispatch(addItem(productCartDetails))}>
+                    <Button color="success" variant="outlined" onClick={
+                        ()=>{ 
+                        dispatch(addItem(productCartDetails));
+                        dispatch(itemAdded(Number(qty)))
+                        }
+                    }>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
                         Add to Cart
+                    </Button>
+                    <Button style={{marginLeft:"0.75rem"}} color="secondary" variant="outlined" onClick={()=> {
+                        dispatch(removeItem(productCartDetails));
+                        dispatch(itemRemoved(Number(qty)))
+                    }    
+                    }
+                        >
+                        <Delete/>
+                        Remove from Cart
                     </Button>
                </CardContent>
            </Card>
        </Grid>
        </Grid>
        </ThemeProvider>
-       <Cart/>
        </>
 )
 }

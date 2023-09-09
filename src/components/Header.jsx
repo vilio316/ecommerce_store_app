@@ -1,7 +1,9 @@
 import { Person, ShoppingCartRounded } from "@mui/icons-material";
 import { Badge, Icon, IconButton } from "@mui/material";
-
+import { useSelector } from "react-redux";
+import { cartLength } from "../features/cart/cartContentSlice";
 export default function Header(){
+    let cart_length = Number(useSelector(cartLength));
     return(
         <div className="grid five_cols centered_items nav_bar">
             <p><a href={'/'}>CompanyName</a></p>
@@ -13,9 +15,11 @@ export default function Header(){
             <Person color="secondary"/>
         </IconButton>
         <IconButton>
-        <Badge badgeContent={0} color="success">
+            <a href={'/products/cart'}>
+        <Badge badgeContent={cart_length} color="success">
             <ShoppingCartRounded color="success"/>
-       </Badge> 
+       </Badge>
+       </a> 
        </IconButton>
             </div>
         </div>

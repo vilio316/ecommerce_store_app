@@ -8,7 +8,7 @@ function ProductCard(props){
   let product = props.entry;
 let [omega, useOmega] = useState(true);
 return(
-  <Grid item xs={12} md={3} key={product.title}>
+  <Grid item xs={6} md={3} key={product.title}>
           <Card className="styled_card">
         <CardContent>        
         <CardActionArea LinkComponent={"a"} href={`/product/${product.id}`}>
