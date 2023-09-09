@@ -8,7 +8,7 @@ function ProductCard(props){
   let product = props.entry;
 let [omega, useOmega] = useState(true);
 return(
-  <Grid item xs={12} md={3} key={product.id}>
+  <Grid item xs={12} md={3} key={product.title}>
           <Card className="styled_card">
         <CardContent>        
         <CardActionArea LinkComponent={"a"} href={`/product/${product.id}`}>
@@ -23,8 +23,8 @@ return(
           <IconButton aria-label='shopping_cart'>
             <ShoppingCart color="success"/>
           </IconButton>
-          <IconButton onClick={()=> {useOmega(!omega); console.log(omega)}}>
-            <FavoriteRounded color={omega? "": "success" }/>
+          <IconButton onClick={()=> {useOmega(!omega)}}>
+            <FavoriteRounded color={omega? "": "secondary" }/>
           </IconButton>
 
           </span>
@@ -44,7 +44,7 @@ export default function ProductsHomepage() {
         <Typography paragraph variant="h4">All Products</Typography>
         <Typography paragraph variant="h4">Showing {ostriches[0].id} - {ostriches[19].id}</Typography>
         <Grid container spacing={1.5} marginBottom={1.5}>
-        {ostriches.map((product) => <ProductCard entry={product}/> )}
+        {ostriches.map((product) => <ProductCard entry={product} key={product.id}/> )}
         </Grid>
         <Grid container justifyContent={"center"} marginBottom={2}>
         <ButtonGroup>

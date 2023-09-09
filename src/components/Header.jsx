@@ -5,7 +5,7 @@ export default function Header(){
     return(
         <div className="grid five_cols centered_items nav_bar">
             <p><a href={'/'}>CompanyName</a></p>
-            <a href={"/products"}>Products</a>
+            <a href={"/products/1"}>Products</a>
             <a>About Us</a>
             <a>Contact Us</a>
             <div className="grid centered_items two_cols">
@@ -13,7 +13,7 @@ export default function Header(){
             <Person color="secondary"/>
         </IconButton>
         <IconButton>
-        <Badge badgeContent={localStorage.length} color="success">
+        <Badge badgeContent={0} color="success">
             <ShoppingCartRounded color="success"/>
        </Badge> 
        </IconButton>

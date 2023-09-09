@@ -18,19 +18,18 @@ function App() {
   }
 
     function Products(){
-
       let cover_products = useLoaderData();
       let abraca = cover_products.products;
       return(
         <>
-          <Typography variant='h4' className='center_text'>
+        <Typography variant='h4' className='center_text'>
             <p>Products</p>
             </Typography>
             <Typography variant='subtitle1' className='center_text'>
             <p>A selection of our finest products</p>
             </Typography>
         <Grid container spacing={1}>
-        {abraca.map((prod) => <Grid item xs={6} md={3}>
+        {abraca.map((prod) => <Grid item xs={6} md={3} key={prod.title}>
         <div className='grid centered_items four_cols'>
           
             <Card className='styled_card'>
@@ -58,7 +57,8 @@ function App() {
         </Grid>
         )}
         </Grid>
-        <a className='center_text' style={{fontStyle:"italic"}} href={'/products'}>See More....</a>
+        <a className='center_text' style={{fontStyle:"italic"}} href={'/products/1'}>See More....</a>
+        
         </>
       )
 
@@ -99,13 +99,16 @@ function App() {
     </Grid>
       )
     }
-  return (
+  return(
+  <>
     <ThemeProvider theme={testTheme}>
     <Hero/>
     <Products/>
     <NextSection/>
     <Testimonials/>
-    </ThemeProvider>
+   </ThemeProvider>
+    </>
   )
+  
 }
 export default App

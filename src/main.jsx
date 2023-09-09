@@ -8,9 +8,11 @@ import Footer from './components/Footer.jsx'
 import ProductsHomepage from './components/ProductsHomepage.jsx'
 import { fetchProductInfo, fetchProducts } from './loaders/loaders.js'
 import ErrorPage from './components/ErrorPage.jsx'
+import { Provider } from 'react-redux'
+import { cartStore } from './app/store.js'
 const availableRoutes = createBrowserRouter([{
   path: '/', element: <App/>, loader: ()=> {
-    return fetchProducts(4, 0)
+    return fetchProducts(4, 0);
   }, errorElement: <ErrorPage/>
 },
 {
@@ -46,8 +48,12 @@ const availableRoutes = createBrowserRouter([{
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
-  <Header/>
+  
+    <Header/>
+    <Provider store={cartStore}>
 <RouterProvider router={availableRoutes}/>
+</Provider>
 <Footer/>
+
 </>
 )

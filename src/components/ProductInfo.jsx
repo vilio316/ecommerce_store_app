@@ -2,32 +2,29 @@ import { Button, Card, CardContent, CardMedia, Grid, Icon, Rating, ThemeProvider
 import { AddShoppingCartSharp} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { addItem } from "../features/cart/cartSlice"
+import { pickSlice } from "../features/cart/cartSlice"
 import Cart from "./Cart"
 export default function ProductInfo(){
     let product_data = useLoaderData();
-
+    let slice_state = pickSlice;
+    let dispatch = useDispatch();
     const productCartDetails = {
         name: `${product_data.title}`,
         price: `${product_data.price}`,
         quantity: 1,
-    }
-    function addToStorage(){
-        localStorage.setItem(`${product_data.title}`, JSON.stringify(productCartDetails));
-        console.log(localStorage)
-        console.log(localStorage.getItem(`${product_data.title}`))
     }
     return(
         <>
         <ThemeProvider theme={testTheme}>
         <Grid container spacing={1} justifyContent={"center"} alignContent={"center"} mb={3}>
             <Grid item xs={12} md={4} justifySelf={"center"} alignSelf={"center"}>
-            <div className="grid" style={{padding: "0.25rem 0.5rem"}}>
             <img 
                 className="rounded_images" 
                 src={product_data.thumbnail} 
                 alt="A demo picture of the react logo" 
-                style={{width:"90%"}}/>
-            </div>
+                style={{width:"100%"}}/>
             </Grid>
             <Grid item xs={12} md={8}>
             <Card>
@@ -51,7 +48,7 @@ export default function ProductInfo(){
                         <label>Instalments</label>
                       
                       </form> 
-                    <Button color="success" variant="outlined" onClick={addToStorage}>
+                    <Button color="success" variant="outlined" onClick={()=> dispatch(addItem(productCartDetails))}>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
                         Add to Cart
                     </Button>
