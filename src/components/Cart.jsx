@@ -20,9 +20,8 @@ return(
             </TableRow>
         </TableHead>
         <TableBody>
-            {cart_items.map((item)=>{
-                <TableRow key={item.name}>
-                    <TableCell><img src={item.thumbnail}></img></TableCell>
+            {cart_items.map((item)=>  <TableRow key={item.name}>
+                    <TableCell><img src={item.thumbnail} style={{width: "5%"}}></img></TableCell>
                     <TableCell><a href={`/product/${item.id}`}>{item.name}</a>
                     </TableCell>
                     <TableCell>{item.quantity}</TableCell>
@@ -30,14 +29,14 @@ return(
                     <TableCell>{Number(item.price) * Number(item.quantity)}
                     </TableCell>
                 </TableRow>
-            } )}
+)}
             <TableRow>
-                <TableCell colSpan={4}
+                <TableCell colSpan={3}
                 ><Typography paragraph variant="h4">
                     Grand Total
                     </Typography>
                     </TableCell>
-                    <TableCell>{cart_price}</TableCell>
+                    <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "center"}}>{cart_price}</p></TableCell>
             </TableRow>
         </TableBody>
     </Table>
