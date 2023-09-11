@@ -20,13 +20,17 @@ return(
             </TableRow>
         </TableHead>
         <TableBody>
-            {cart_items.map((item)=>  <TableRow key={item.name}>
-                    <TableCell><img src={item.thumbnail} style={{width: "5%"}}></img></TableCell>
+            {cart_items.map((item)=>  <TableRow key={Math.random()* 2000}>
+                    <TableCell>
+                        <div className="grid centered_items" style={{width: "70%", placeSelf:"center"}}>
+                        <img src={item.thumbnail} style={{width: "15%"}} className="rounded_images"></img>
+                        </div>
+                        </TableCell>
                     <TableCell><a href={`/product/${item.id}`}>{item.name}</a>
                     </TableCell>
                     <TableCell>{item.quantity}</TableCell>
-                    <TableCell>{item.price}</TableCell>
-                    <TableCell>{Number(item.price) * Number(item.quantity)}
+                    <TableCell align="right">{item.price}</TableCell>
+                    <TableCell align="right">{Number(item.price) * Number(item.quantity)}
                     </TableCell>
                 </TableRow>
 )}
@@ -36,11 +40,10 @@ return(
                     Grand Total
                     </Typography>
                     </TableCell>
-                    <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "center"}}>{cart_price}</p></TableCell>
+                    <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "right"}}>{cart_price}</p></TableCell>
             </TableRow>
         </TableBody>
     </Table>
-    <p>{cart_price}</p>
 </>
 )
 }

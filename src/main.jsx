@@ -11,6 +11,8 @@ import { fetchProductInfo, fetchProducts } from './loaders/loaders.js'
 import ErrorPage from './components/ErrorPage.jsx'
 import { Provider } from 'react-redux'
 import { cartStore } from './app/store.js'
+import { ThemeProvider } from '@mui/material'
+import { testTheme } from './assets/mui_themes/themes.js'
 const availableRoutes = createBrowserRouter([
   {
   path: '/', element: <App/>, loader: ()=> {
@@ -54,8 +56,10 @@ const availableRoutes = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
   <Provider store={cartStore}>
-    <Header/>
+  <Header/>
+    <ThemeProvider theme={testTheme}>
 <RouterProvider router={availableRoutes}/>
+</ThemeProvider>
 </Provider>
 <Footer/>
 
