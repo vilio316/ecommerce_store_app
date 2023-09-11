@@ -39,7 +39,8 @@ export const testTheme= createTheme({
             styleOverrides:{
                 root:{
                     margin: "0.5rem 0",
-                    borderRadius: "1rem",
+                    marginBottom: "0.75rem",
+                    borderRadius: "1.5rem",
                 }
             }
         },

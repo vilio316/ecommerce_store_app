@@ -6,7 +6,7 @@ export default function Header(){
     let cart_length = Number(useSelector(cartLength));
     return(
         <div className="grid five_cols centered_items nav_bar">
-            <p><a href={'/'}>CompanyName</a></p>
+            <p style={{fontSize:"1.5rem", fontWeight:"bold"}}><a href={'/'}>TheDummyStore</a></p>
             <a href={"/products/1"}>Products</a>
             <a>About Us</a>
             <a>Contact Us</a>

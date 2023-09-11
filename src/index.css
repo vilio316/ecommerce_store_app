@@ -28,6 +28,7 @@ align-content: center;
 justify-content: center;
 }
 .hero{
+  margin-top: 0.5rem;
   background-image: url("/src/assets/react.svg");
 }
 .center_text{
@@ -68,6 +69,13 @@ justify-content: center;
   font-weight: bold;
   display: block;
   margin-top: 0.5rem;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  opacity: 0.75
 }
 @media screen and (max-width:768px) {
   .grid{
