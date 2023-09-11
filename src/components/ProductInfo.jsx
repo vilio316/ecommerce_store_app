@@ -5,7 +5,7 @@ import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { addItem, removeItem } from "../features/cart/cartSlice"
-import { itemAdded, itemRemoved } from "../features/cart/cartContentSlice"
+import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice"
 export default function ProductInfo(){
     let product_data = useLoaderData();
     let dispatch = useDispatch();
@@ -14,6 +14,7 @@ export default function ProductInfo(){
         name: `${product_data.title}`,
         price: `${product_data.price}`,
         quantity: qty,
+        id : `${product_data.id}`,
         thumbnail: `${product_data.thumbnail}`,
 
     }
@@ -53,7 +54,8 @@ export default function ProductInfo(){
                     <Button color="success" variant="outlined" onClick={
                         ()=>{ 
                         dispatch(addItem(productCartDetails));
-                        dispatch(itemAdded(Number(qty)))
+                        dispatch(itemAdded(Number(qty)));
+                        dispatch(priceTotal(Number(productCartDetails.price) * qty))
                         }
                     }>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
@@ -61,7 +63,8 @@ export default function ProductInfo(){
                     </Button>
                     <Button style={{marginLeft:"0.75rem"}} color="secondary" variant="outlined" onClick={()=> {
                         dispatch(removeItem(productCartDetails));
-                        dispatch(itemRemoved(Number(qty)))
+                        dispatch(itemRemoved(Number(qty)));
+                        dispatch(priceTotal(- (Number(productCartDetails.price) * qty)))
                     }    
                     }
                         >

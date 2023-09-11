@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { testTheme, colors } from "../assets/mui_themes/themes";
 import { useState } from "react";
 
-function ProductCard(props){
+export function ProductCard(props){
   let product = props.entry;
 let [omega, useOmega] = useState(true);
 return(

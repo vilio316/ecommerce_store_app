@@ -4,6 +4,7 @@ import demoImg from './assets/react.svg'
 import { testTheme } from './assets/mui_themes/themes';
 import { FavoriteRounded, ShoppingCart } from '@mui/icons-material';
 import { useLoaderData } from 'react-router-dom';
+import { ProductCard } from './components/ProductsHomepage';
 function App() {
   function Hero(){
     return(   
@@ -28,34 +29,9 @@ function App() {
             <Typography variant='subtitle1' className='center_text'>
             <p>A selection of our finest products</p>
             </Typography>
-        <Grid container spacing={1}>
-        {abraca.map((prod) => <Grid item xs={6} md={3} key={prod.title}>
-        <div className='grid centered_items four_cols'>
-          
-            <Card className='styled_card'>
-                <CardMedia className="card_image" component="img" alt={prod.title} src={prod.thumbnail} height={125}></CardMedia>
-                <CardContent>
-                <CardActionArea LinkComponent={"a"} href={`/product/${prod.id}`}>
-                  <Typography className='typ' variant="h5">{prod.title}</Typography>
-                  <p className='desc_p'>{prod.description}</p>
-                  <span className='product_price'>${prod.price.toFixed(2)}</span>
-                  </CardActionArea>
-
-                  <div className='grid'>
-                  <span style={{placeSelf:"end"}}>
-                  <IconButton aria-label='shopping_cart'>
-                    <ShoppingCart color="success"/>
-                  </IconButton>
-                  <IconButton>
-                  <FavoriteRounded/>
-                  </IconButton>
-                  </span>
-                  </div>
-                </CardContent>
-            </Card>
-        </div>
-        </Grid>
-        )}
+        <Grid container spacing={1} justifyItems={'center'}>
+        {abraca.map((prod) =>
+          <ProductCard entry={prod} key={prod.title}/>)}
         </Grid>
         <a className='center_text' style={{fontStyle:"italic"}} href={'/products/1'}>See More....</a>
         
