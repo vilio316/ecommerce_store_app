@@ -9,11 +9,16 @@ const cartContentSlice = createSlice({
             state.value += action.payload;
         }, 
         itemRemoved: (state, action) =>{
-            if(action.payload > 0)
-            state.value -= action.payload
+        state.value -= action.payload;
+        if(state.value < 0){
+            state.value = 0
+        }
         },
         priceTotal: (state, action)=>{
-            state.total += action.payload
+            state.total += action.payload;
+            if(state.total < 0){
+                state.total = 0
+            }
     }
     }
 })

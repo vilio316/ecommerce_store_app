@@ -48,7 +48,7 @@ function App() {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet sed amet excepturi tempore nam hic culpa pariatur 
               aliquid atque, nobis voluptatem quidem ipsa, error perferendis quia provident sit iste.</p>
           </Grid>
-          <Grid container xs={12} sm={3} justifyContent={"center"} alignContent={"center"}>
+          <Grid container item xs={12} sm={3} justifyContent={"center"} alignContent={"center"}>
           <div>
             <img src={demoImg} alt="skrooge_wryyyy" width={"100%"}/>
           </div>

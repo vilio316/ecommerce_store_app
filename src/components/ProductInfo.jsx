@@ -1,12 +1,14 @@
 import { Button, Card, CardContent, CardMedia, Grid, Icon, Rating, ThemeProvider, Typography} from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AddShoppingCartSharp, Delete} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { addItem, removeItem } from "../features/cart/cartSlice"
+import { addToSupa, deleteFromSupa} from '../features/cart/cartSlice';
+import { addItem, fetchStoreFromSupa, removeItem } from "../features/cart/cartSlice"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice"
 export default function ProductInfo(){
+    useEffect(()=> dispatch(fetchStoreFromSupa()), [])
     let product_data = useLoaderData();
     let dispatch = useDispatch();
     let [qty, increaseQty] = useState(1);
@@ -55,7 +57,8 @@ export default function ProductInfo(){
                         ()=>{ 
                         dispatch(addItem(productCartDetails));
                         dispatch(itemAdded(Number(qty)));
-                        dispatch(priceTotal(Number(productCartDetails.price) * qty))
+                        dispatch(priceTotal(Number(productCartDetails.price) * qty));
+                        dispatch(addToSupa(productCartDetails))
                         }
                     }>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
@@ -65,6 +68,7 @@ export default function ProductInfo(){
                         dispatch(removeItem(productCartDetails));
                         dispatch(itemRemoved(Number(qty)));
                         dispatch(priceTotal(- (Number(productCartDetails.price) * qty)))
+                        dispatch(deleteFromSupa(productCartDetails))
                     }    
                     }
                         >
