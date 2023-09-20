@@ -4,6 +4,7 @@ import demoImg from './assets/react.svg'
 import { testTheme } from './assets/mui_themes/themes';
 import { useLoaderData } from 'react-router-dom';
 import { ProductCard } from './components/ProductsHomepage';
+import Runner from './supabase/authfiles';
 function App() {
   function Hero(){
     return(   
@@ -33,7 +34,7 @@ function App() {
           <ProductCard entry={prod} key={prod.title}/>
           )}
         </Grid>
-        <a className='center_text' style={{fontStyle:"italic", width: "100%", display:"block", margin:"0.5rem 0", fontSize:"1.5rem"}} href={'/products/1'}>See More....</a>
+        <a className='center_text' style={{fontStyle:"italic", width: "100%", display:"block", margin:"0.5rem 0", fontSize:"1.5rem", textDecoration:"underline"}} href={'/products/1'}>See More....</a>
         
         </>
       )
@@ -42,17 +43,18 @@ function App() {
 
     function NextSection(){
       return(
-        <Grid container>
-          <Grid item xs={12} sm={9}>
+        <Grid container style={{backgroundColor: "rgba(225, 60, 0, 0.5)", borderRadius:"1rem", padding: "0.5rem", margin:"0.75rem 0"}}>
+          <Grid item xs={12} sm={7}>
             <Typography paragraph variant="h3">Clean and fragrant soy wax</Typography>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet sed amet excepturi tempore nam hic culpa pariatur 
               aliquid atque, nobis voluptatem quidem ipsa, error perferendis quia provident sit iste.</p>
           </Grid>
-          <Grid container item xs={12} sm={3} justifyContent={"center"} alignContent={"center"}>
+          <Grid container item xs={12} sm={5} justifyContent={"center"} alignContent={"center"}>
           <div>
             <img src={demoImg} alt="skrooge_wryyyy" width={"100%"}/>
           </div>
           </Grid>
+          <Testimonials/>
           </Grid>
       )
     }
@@ -80,10 +82,7 @@ function App() {
     }
   return(
   <>
-    <Hero/>
-    <Products/>
-    <NextSection/>
-    <Testimonials/>
+    <Runner/>
     </>
   )
   

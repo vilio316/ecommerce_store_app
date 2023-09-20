@@ -4,11 +4,12 @@ import { AddShoppingCartSharp, Delete} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import supaInit from "../supabase/supaconfig"
 import { addToSupa, deleteFromSupa} from '../features/cart/cartSlice';
-import { addItem, fetchStoreFromSupa, removeItem } from "../features/cart/cartSlice"
-import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice"
+import { addItem, removeItem } from "../features/cart/cartSlice"
+import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
+
 export default function ProductInfo(){
-    useEffect(()=> dispatch(fetchStoreFromSupa()), [])
     let product_data = useLoaderData();
     let dispatch = useDispatch();
     let [qty, increaseQty] = useState(1);
@@ -55,7 +56,6 @@ export default function ProductInfo(){
                       </form> 
                     <Button color="success" variant="outlined" onClick={
                         ()=>{ 
-                        dispatch(addItem(productCartDetails));
                         dispatch(itemAdded(Number(qty)));
                         dispatch(priceTotal(Number(productCartDetails.price) * qty));
                         dispatch(addToSupa(productCartDetails))
@@ -65,7 +65,6 @@ export default function ProductInfo(){
                         Add to Cart
                     </Button>
                     <Button style={{marginLeft:"0.75rem"}} color="secondary" variant="outlined" onClick={()=> {
-                        dispatch(removeItem(productCartDetails));
                         dispatch(itemRemoved(Number(qty)));
                         dispatch(priceTotal(- (Number(productCartDetails.price) * qty)))
                         dispatch(deleteFromSupa(productCartDetails))

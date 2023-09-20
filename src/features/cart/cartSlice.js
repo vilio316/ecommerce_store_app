@@ -11,11 +11,6 @@ const cartSlice = createSlice({
         }
     },
 })
-
-export const fetchStoreFromSupa = ()=> async()=>{
-    const {data, error} = await supaInit.from("cart").select()
-    console.log(data)
-}
 export const addToSupa = (item)=> async(dispatch)=>{
     const {data} = await supaInit.from("cart").upsert([item]);
     dispatch(addItem(item))

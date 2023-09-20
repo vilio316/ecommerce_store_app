@@ -3,11 +3,19 @@ import { pickSlice } from "../features/cart/cartSlice";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ShoppingCartCheckout } from "@mui/icons-material";
 import {Button} from "@mui/material";
-
+import supaInit from "../supabase/supaconfig";
+import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 export default function Cart(){
-    let cart_price = useSelector((state)=> state.number.total);
-let cart_items = useSelector(pickSlice);
-let a = 0;
+let [total, setTotal] = useState(0);
+async function alpha(){
+let {data} = await supaInit.from("cart").select('price');
+let andromeda_1 = await supaInit.from("cart").select("quantity");
+setTotal(andromeda_1.data[0].quantity * data[0].price)
+}
+alpha();
+let cart_price = useSelector((state)=> state.number.total);
+let cart_items = useLoaderData();
 return(
     <>
     <Typography paragraph variant="h3">
@@ -47,7 +55,7 @@ return(
                     Grand Total
                     </Typography>
                     </TableCell>
-                    <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "right", fontSize:"1.75rem"}}>${cart_price.toFixed(2)}</p></TableCell>
+                    <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "right", fontSize:"1.75rem"}}>${total}</p></TableCell>
             </TableRow>
         </TableBody>
     </Table>
