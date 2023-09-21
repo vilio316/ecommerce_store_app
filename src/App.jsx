@@ -82,7 +82,6 @@ function App() {
   return(
   <>
     <Hero/>
-    <Products/>
     <NextSection/>
     </>
   )

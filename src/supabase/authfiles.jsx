@@ -25,7 +25,7 @@ export function SignInUp() {
     return (<Auth supabaseClient={supaInit} appearance={{ theme: ThemeSupa }} />)
   }
   else {
-    console.log("fuck")
+    return (<App/>)
   }
 }
 
