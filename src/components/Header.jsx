@@ -2,6 +2,7 @@ import { Person, ShoppingCartRounded } from "@mui/icons-material";
 import { Badge, Icon, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { cartLength } from "../features/cart/cartContentSlice";
+import { SignOut } from "../supabase/authfiles";
 export default function Header(){
     let cart_length = Number(useSelector(cartLength));
     return(
@@ -11,7 +12,7 @@ export default function Header(){
             <a>About Us</a>
             <a>Contact Us</a>
             <div className="grid centered_items two_cols">
-        <IconButton>
+        <IconButton onClick={()=> SignOut()}>
             <Person color="secondary"/>
         </IconButton>
         <IconButton>

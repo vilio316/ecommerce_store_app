@@ -4,7 +4,6 @@ import demoImg from './assets/react.svg'
 import { testTheme } from './assets/mui_themes/themes';
 import { useLoaderData } from 'react-router-dom';
 import { ProductCard } from './components/ProductsHomepage';
-import Runner from './supabase/authfiles';
 function App() {
   function Hero(){
     return(   
@@ -82,7 +81,9 @@ function App() {
     }
   return(
   <>
-    <Runner/>
+    <Hero/>
+    <Products/>
+    <NextSection/>
     </>
   )
   

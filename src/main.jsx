@@ -13,11 +13,10 @@ import { Provider } from 'react-redux'
 import { cartStore } from './app/store.js'
 import { ThemeProvider } from '@mui/material'
 import { testTheme } from './assets/mui_themes/themes.js'
+import Authorise from './supabase/authfiles.jsx'
 const availableRoutes = createBrowserRouter([
   {
-  path: '/', element: <App/>, loader: ()=> {
-    return fetchProducts(4, 0);
-  }, errorElement: <ErrorPage/>
+  path: '/', element: <Authorise/>, errorElement: <ErrorPage/>
 },
 {
   path:'/products/1', element:<ProductsHomepage/>, loader: ()=> {
@@ -54,6 +53,10 @@ path: 'products/cart', loader: ()=> {
   return fetchFromSupaBase();
 },element : <Cart/>, errorElement: <ErrorPage/>
 },
+{
+  path: "/home" , element: <App/>, loader: ()=> {return fetchProducts(4,0)}, 
+  errorElement: <ErrorPage/>
+}
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
