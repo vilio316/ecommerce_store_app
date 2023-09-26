@@ -15,32 +15,55 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
   password: pwd,
   options:{
-    redirectTo: "https://barrysdummystore.netlify.app/home"
+    emailRedirectTo: "https://barrysdummystore.netlify.app/home"
   }
 }
 )
 if(error){
   console.log(error)
 }
-else{
- console.log(targeter.current)
+
 }
-}
+
+
 return(
   <>
   <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
     setMail(e.target.value);
-    console.log(email)
   }} style={{display: "block"}}/>
-  <TextField label="Password" variant="outlined" onChange={(e)=> {
+  <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value);
-    console.log(pwd)
   } }/>
-  <Button onClick={albedo}><a ref={targeter} href="">Sign In</a> </Button>
+  <Button onClick={albedo}>Sign In</Button>
+  <p>Don't have an account? <a href={'/sign-up'}>Sign Up</a></p>
   </>
 )
-
 }
+export function SignUp(){
+  let [email, setMail] = useState();
+  let [pwd, setPwd]= useState();
+
+  const creator = async()=>{
+    const { data, error } = await supaInit.auth.signUp({
+  email: email,
+  password: pwd,
+})
+  }
+
+  return(
+    <>
+    <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
+      setMail(e.target.value);
+    }} style={{display: "block"}}/>
+    <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
+      setPwd(e.target.value);
+    } }/>
+    <Button onClick={creator}>Sign Up!</Button>
+    <a href={'/'}>Back To Sign In</a>
+    </>
+  )
+}
+
 export async function SignOut(){
   const { error } = await supaInit.auth.signOut()
 }
