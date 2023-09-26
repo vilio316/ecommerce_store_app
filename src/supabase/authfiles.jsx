@@ -1,21 +1,30 @@
 import supaInit from "./supaconfig"
 import { ThemeSupa } from "@supabase/auth-ui-shared"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Auth } from "@supabase/auth-ui-react"
 import App from "../App"
 import { Button, TextField } from "@mui/material"
 
-function SignInWmail(){
+export function SignInWmail(){
 let [email, setMail] = useState();
 let [pwd, setPwd]= useState();
+let targeter = useRef();
 
 async function albedo(){
 const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
-  password: pwd
+  password: pwd,
+  options:{
+    redirectTo: "https://barrysdummystore.netlify.app/home"
+  }
 }
 )
-console.log(data)
+if(error){
+  console.log(error)
+}
+else{
+ console.log(targeter.current)
+}
 }
 return(
   <>
@@ -27,18 +36,11 @@ return(
     setPwd(e.target.value);
     console.log(pwd)
   } }/>
-  <Button onClick={albedo}>Sign In </Button>
+  <Button onClick={albedo}><a ref={targeter} href="">Sign In</a> </Button>
   </>
 )
 
 }
 export async function SignOut(){
   const { error } = await supaInit.auth.signOut()
-}
-export default function Authorise(){
-  return(
-    <>
-    <SignInWmail/>
-    </>
-  )
 }

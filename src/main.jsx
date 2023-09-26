@@ -13,10 +13,10 @@ import { Provider } from 'react-redux'
 import { cartStore } from './app/store.js'
 import { ThemeProvider } from '@mui/material'
 import { testTheme } from './assets/mui_themes/themes.js'
-import Authorise from './supabase/authfiles.jsx'
+import { SignInWmail } from './supabase/authfiles.jsx'
 const availableRoutes = createBrowserRouter([
   {
-  path: '/', element: <Authorise/>, errorElement: <ErrorPage/>
+  path: '/', element: <SignInWmail/>, errorElement: <ErrorPage/>
 },
 {
   path:'/products/1', element:<ProductsHomepage/>, loader: ()=> {

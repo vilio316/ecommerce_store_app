@@ -13,7 +13,9 @@ export default function Header(){
             <a>Contact Us</a>
             <div className="grid centered_items two_cols">
         <IconButton onClick={()=> SignOut()}>
+            <a href={'/'}>
             <Person color="secondary"/>
+            </a>
         </IconButton>
         <IconButton>
             <a href={'/products/cart'}>
