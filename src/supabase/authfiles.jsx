@@ -6,22 +6,23 @@ import App from "../App"
 import { Button, TextField } from "@mui/material"
 
 export function SignInWmail(){
+  let [isValid, validState] = useState(false)
 let [email, setMail] = useState();
 let [pwd, setPwd]= useState();
-let targeter = useRef();
 
 async function albedo(){
 const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
   password: pwd,
-  options:{
-    emailRedirectTo: "https://barrysdummystore.netlify.app/home"
-  }
 }
 )
+const {err} = await supaInit.from("cart_updated").insert({id : data.user.id, total_price : "0", cart: [], item_number: "0"})
+
 if(error){
-  console.log(error)
+  console.log(error);
 }
+console.log(data, err)
+
 
 }
 
@@ -34,11 +35,13 @@ return(
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value);
   } }/>
-  <Button onClick={albedo}>Sign In</Button>
-  <p>Don't have an account? <a href={'/sign-up'}>Sign Up</a></p>
+  <Button onClick={()=> albedo()}><a href="/home">Sign In</a></Button>
+  <p>Don't have an account? <a href='/'>Sign Up</a></p>
   </>
 )
 }
+
+
 export function SignUp(){
   let [email, setMail] = useState();
   let [pwd, setPwd]= useState();
@@ -59,7 +62,9 @@ export function SignUp(){
       setPwd(e.target.value);
     } }/>
     <Button onClick={creator}>Sign Up!</Button>
-    <a href={'/'}>Back To Sign In</a>
+   <p style={{display:"block"}}>Already have an account?
+    <a href={'/sign-in'}><u>Sign in here</u></a>
+    </p>
     </>
   )
 }

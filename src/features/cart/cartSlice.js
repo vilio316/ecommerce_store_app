@@ -11,9 +11,18 @@ const cartSlice = createSlice({
         }
     },
 })
-export const addToSupa = (item)=> async(dispatch)=>{
-    const {data} = await supaInit.from("cart").upsert([item]);
-    dispatch(addItem(item))
+export const addToSupa = (item, arr)=> async(dispatch)=>{
+    dispatch(addItem(item));
+    arr.push(item)
+    let id;
+    const blaster = await supaInit.from("cart_updated").select("id")
+    id = blaster.data[0].id
+    console.log(id)
+    const {data} = await supaInit.from("cart_updated").update({
+        total_price : Number(item.quantity) * Number(item.price), 
+        cart: arr, 
+        item_number: Number(item.quantity)}).eq("id", id);
+    console.log(data)
 }
 export const deleteFromSupa = (item)=> async(dispatch)=>{
     const {data} = await supaInit.from("cart").delete().eq("id",item.id);

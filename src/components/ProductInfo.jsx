@@ -5,13 +5,14 @@ import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import supaInit from "../supabase/supaconfig"
-import { addToSupa, deleteFromSupa} from '../features/cart/cartSlice';
+import { addToSupa, deleteFromSupa, pickSlice} from '../features/cart/cartSlice';
 import { addItem, removeItem } from "../features/cart/cartSlice"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
 
 export default function ProductInfo(){
     let product_data = useLoaderData();
     let dispatch = useDispatch();
+    let [cart, addTo] = useState([]);
     let [qty, increaseQty] = useState(1);
     const productCartDetails = {
         name: `${product_data.title}`,
@@ -19,7 +20,6 @@ export default function ProductInfo(){
         quantity: qty,
         id : `${product_data.id}`,
         thumbnail: `${product_data.thumbnail}`,
-
     }
     return(
         <>
@@ -58,7 +58,8 @@ export default function ProductInfo(){
                         ()=>{ 
                         dispatch(itemAdded(Number(qty)));
                         dispatch(priceTotal(Number(productCartDetails.price) * qty));
-                        dispatch(addToSupa(productCartDetails))
+                        addTo(...cart, productCartDetails)
+                        dispatch(addToSupa(productCartDetails, cart))
                         }
                     }>
                         <AddShoppingCartSharp></AddShoppingCartSharp>

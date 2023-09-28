@@ -16,10 +16,10 @@ import { testTheme } from './assets/mui_themes/themes.js'
 import { SignInWmail, SignUp } from './supabase/authfiles.jsx'
 const availableRoutes = createBrowserRouter([
   {
-  path: '/', element: <SignInWmail/>, errorElement: <ErrorPage/>
+  path: '/sign-in', element: <SignInWmail/>, errorElement: <ErrorPage/>
 },
 {
-  path: '/sign-up', element: <SignUp/>, errorElement: <ErrorPage/>
+  path: '/', element: <SignUp/>, errorElement: <ErrorPage/>
 },
 {
   path:'/products/1', element:<ProductsHomepage/>, loader: ()=> {
