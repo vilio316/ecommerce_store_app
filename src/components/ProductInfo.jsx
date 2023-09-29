@@ -3,16 +3,25 @@ import { useEffect, useState } from "react"
 import { AddShoppingCartSharp, Delete} from "@mui/icons-material"
 import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import supaInit from "../supabase/supaconfig"
 import { addToSupa, deleteFromSupa, pickSlice} from '../features/cart/cartSlice';
 import { addItem, removeItem } from "../features/cart/cartSlice"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
 
 export default function ProductInfo(){
+    let [cart_state, updateCartState] = useState([])
+    useEffect(()=>{ async function fetchfromSupa(){
+        const {data} = await supaInit.from("cart_updated").select("cart");
+        updateCartState(data[0].cart);
+        console.log(cart_state)
+    }
+    fetchfromSupa()
+}
+    , []
+    )
     let product_data = useLoaderData();
     let dispatch = useDispatch();
-    let [cart, addTo] = useState([]);
     let [qty, increaseQty] = useState(1);
     const productCartDetails = {
         name: `${product_data.title}`,
@@ -21,6 +30,7 @@ export default function ProductInfo(){
         id : `${product_data.id}`,
         thumbnail: `${product_data.thumbnail}`,
     }
+    console.log(cart_state)
     return(
         <>
         <ThemeProvider theme={testTheme}>
@@ -56,10 +66,10 @@ export default function ProductInfo(){
                       </form> 
                     <Button color="success" variant="outlined" onClick={
                         ()=>{ 
+                            updateCartState({...cart_state, productCartDetails})
                         dispatch(itemAdded(Number(qty)));
                         dispatch(priceTotal(Number(productCartDetails.price) * qty));
-                        addTo(...cart, productCartDetails)
-                        dispatch(addToSupa(productCartDetails, cart))
+                        dispatch(addToSupa(productCartDetails, cart_state))
                         }
                     }>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
@@ -68,7 +78,7 @@ export default function ProductInfo(){
                     <Button style={{marginLeft:"0.75rem"}} color="secondary" variant="outlined" onClick={()=> {
                         dispatch(itemRemoved(Number(qty)));
                         dispatch(priceTotal(- (Number(productCartDetails.price) * qty)))
-                        dispatch(deleteFromSupa(productCartDetails))
+                        dispatch(deleteFromSupa(productCartDetails, cart_state))
                     }    
                     }
                         >

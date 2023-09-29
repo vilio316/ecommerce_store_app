@@ -3,8 +3,18 @@ import { Badge, Icon, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { cartLength } from "../features/cart/cartContentSlice";
 import { SignOut } from "../supabase/authfiles";
+import { useEffect, useState } from "react";
+import supaInit from "../supabase/supaconfig";
 export default function Header(){
     let cart_length = Number(useSelector(cartLength));
+    let [number, numberSwitch] = useState(0);
+
+    useEffect(()=> {async function getNo(){
+        const {data}  = await supaInit.from("cart_updated").select("item_number");
+        numberSwitch(data[0].item_number)
+    }
+    getNo()
+}, [])
     return(
         <div className="grid five_cols centered_items nav_bar">
             <p style={{fontSize:"1.5rem", fontWeight:"bold"}}><a href={'/'}>TheDummyStore</a></p>
@@ -19,7 +29,7 @@ export default function Header(){
         </IconButton>
         <IconButton>
             <a href={'/products/cart'}>
-        <Badge badgeContent={cart_length} color="success">
+        <Badge badgeContent={Number(number)} color="success">
             <ShoppingCartRounded color="success"/>
        </Badge>
        </a> 

@@ -3,7 +3,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared"
 import { useState, useEffect, useRef } from "react"
 import { Auth } from "@supabase/auth-ui-react"
 import App from "../App"
-import { Button, TextField } from "@mui/material"
+import { Button, Card, Grid, TextField, Typography } from "@mui/material"
 
 export function SignInWmail(){
   let [isValid, validState] = useState(false)
@@ -16,8 +16,10 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   password: pwd,
 }
 )
-const {err} = await supaInit.from("cart_updated").insert({id : data.user.id, total_price : "0", cart: [], item_number: "0"})
+console.log(data);
 
+const {err} = await supaInit.from("cart_updated").insert({id : data.user.id, total_price : "0", cart: [], item_number: "0"})
+console.log(err)
 if(error){
   console.log(error);
 }
@@ -29,14 +31,20 @@ console.log(data, err)
 
 return(
   <>
+  <Grid container justifyContent={"center"}>
+  <Card>
+  <Typography>The DummyStore!</Typography>
+  <Typography>Welcome!</Typography>
   <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
     setMail(e.target.value);
   }} style={{display: "block"}}/>
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value);
   } }/>
-  <Button onClick={()=> albedo()}><a href="/home">Sign In</a></Button>
+  <Button onClick={()=> albedo()}><a href='/home'>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
+  </Card>
+  </Grid>
   </>
 )
 }

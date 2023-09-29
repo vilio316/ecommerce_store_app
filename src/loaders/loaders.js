@@ -14,6 +14,6 @@ export async function fetchProductInfo(id){
 }
 
 export async function fetchFromSupaBase(){
-    let {data} = await supaInit.from("cart").select();
-    return data
+    let {data} = await supaInit.from("cart_updated").select("cart");
+    return data[0].cart
 }
