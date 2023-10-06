@@ -6,18 +6,16 @@ import App from "../App"
 import { Button, Card, Grid, TextField, Typography } from "@mui/material"
 
 export function SignInWmail(){
-  let [isValid, validState] = useState(false)
 let [email, setMail] = useState();
 let [pwd, setPwd]= useState();
-
 async function albedo(){
 const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
   password: pwd,
 }
 )
+co
 console.log(data);
-
 const {err} = await supaInit.from("cart_updated").insert({id : data.user.id, total_price : "0", cart: [], item_number: "0"})
 console.log(err)
 if(error){
@@ -39,9 +37,9 @@ return(
     setMail(e.target.value);
   }} style={{display: "block"}}/>
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
-    setPwd(e.target.value);
+    setPwd(e.target.value)
   } }/>
-  <Button onClick={()=> albedo()}><a href='/home'>Sign In</a></Button>
+  <Button onClick={()=> albedo()}><a href={'/home'}>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
   </Card>
   </Grid>
@@ -77,6 +75,6 @@ export function SignUp(){
   )
 }
 
-export async function SignOut(){
+export async function signOut(){
   const { error } = await supaInit.auth.signOut()
 }

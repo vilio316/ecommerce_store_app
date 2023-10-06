@@ -11,6 +11,7 @@ let cart_price = useSelector((state)=> state.number.total);
 
 
 let cart_items = useLoaderData();
+console.log(cart_items)
 return(
     <>
     <Typography paragraph variant="h3">
