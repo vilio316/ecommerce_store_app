@@ -13,17 +13,22 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
   password: pwd,
 }
-)
-co
-console.log(data);
-const {err} = await supaInit.from("cart_updated").insert({id : data.user.id, total_price : "0", cart: [], item_number: "0"})
+)}
+
+async function insertUser(){
+const {err} = await supaInit.from("cart_updated").insert(
+  {
+    id : data.user.id, 
+    total_price : "0", 
+    cart: [], 
+    item_number: "0",
+  }
+  )
 console.log(err)
 if(error){
   console.log(error);
 }
 console.log(data, err)
-
-
 }
 
 
@@ -39,7 +44,7 @@ return(
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value)
   } }/>
-  <Button onClick={()=> albedo()}><a href={'/home'}>Sign In</a></Button>
+  <Button onClick={()=> {albedo(); insertUser()}}><a href={'/home'}>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
   </Card>
   </Grid>
@@ -57,6 +62,7 @@ export function SignUp(){
   email: email,
   password: pwd,
 })
+console.log(error)
   }
 
   return(

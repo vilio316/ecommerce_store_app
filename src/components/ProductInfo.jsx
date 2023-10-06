@@ -14,7 +14,6 @@ export default function ProductInfo(){
     useEffect(()=>{ async function fetchfromSupa(){
         const {data} = await supaInit.from("cart_updated").select("cart");
         updateCartState(data[0].cart);
-        console.log(cart_state)
     }
     fetchfromSupa()
 }
