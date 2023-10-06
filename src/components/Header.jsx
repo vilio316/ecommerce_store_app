@@ -8,12 +8,13 @@ import supaInit from "../supabase/supaconfig";
 export default function Header(){
     let cart_length = Number(useSelector(cartLength));
     let [number, numberSwitch] = useState(0);
+
     useEffect(()=> {async function getNo(){
         let id ;
         let bleacher = await supaInit.from("cart_updated").select("id")
         id = bleacher.data[0].id;
-        console.log(id)
         const {data}  = await supaInit.from("cart_updated").select("item_number").eq("id", id);
+        console.log(data)
         numberSwitch(data[0].item_number)
     }
     getNo()

@@ -17,6 +17,7 @@ export async function fetchFromSupaBase(){
     let id;
     const blaster = await supaInit.from("cart_updated").select("id");
     id = blaster.data[0].id
+    console.log(id)
     let {data} = await supaInit.from("cart_updated").select("cart").eq("id", id);
     return data[0].cart
 }
