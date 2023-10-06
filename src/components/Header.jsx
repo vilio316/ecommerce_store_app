@@ -14,7 +14,6 @@ export default function Header(){
         let bleacher = await supaInit.from("cart_updated").select("id")
         id = bleacher.data[0].id;
         const {data}  = await supaInit.from("cart_updated").select("item_number").eq("id", id);
-        console.log(data)
         numberSwitch(data[0].item_number)
     }
     getNo()
