@@ -44,7 +44,7 @@ return(
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value)
   } }/>
-  <Button onClick={()=> {albedo(); insertUser()}}><a href={'/home'}>Sign In</a></Button>
+  <Button onClick={async()=> {albedo(); insertUser()}}><a href={'/home'}>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
   </Card>
   </Grid>
