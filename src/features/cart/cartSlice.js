@@ -24,25 +24,21 @@ export const addToSupa = (item, array)=> async(dispatch)=>{
     let id;
     const blaster = await supaInit.from("cart_updated").select("id")
     id = blaster.data[0].id
-    console.log(id)
     const {data} = await supaInit.from("cart_updated").update({ 
         cart: array,
         item_number : array.length,
     }).eq("id", id);
-    console.log(data)
 }
 export const deleteFromSupa = (item, array)=> async(dispatch)=>{
     dispatch(removeItem(item));
-    console.log(array.indexOf(item))
-    array.splice(array.indexOf(item), 1);
-    console.log(array)
+    array.splice(indexOf(item), 1)
     const blaster = await supaInit.from("cart_updated").select("id");
     let id
     id = blaster.data[0].id
     const {data} = await supaInit.from("cart_updated").update({ 
-        cart: array,
+          cart: array,
         item_number : array.length,
-    }).eq("id", id);
+     }).eq("id", id);
 
 }
 

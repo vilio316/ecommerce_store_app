@@ -13,22 +13,18 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
   password: pwd,
 }
-)}
+)
+console.log(data)
+}
 
 async function insertUser(){
-const {err} = await supaInit.from("cart_updated").insert(
-  {
-    id : data.user.id, 
+const {data, err} = await supaInit.from("cart_updated").insert(
+  { 
     total_price : "0", 
     cart: [], 
     item_number: "0",
   }
   )
-console.log(err)
-if(error){
-  console.log(error);
-}
-console.log(data, err)
 }
 
 
@@ -37,14 +33,14 @@ return(
   <Grid container justifyContent={"center"}>
   <Card>
   <Typography>The DummyStore!</Typography>
-  <Typography>Welcome!</Typography>
+  <Typography>Welcome!</Typography>         
   <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
     setMail(e.target.value);
   }} style={{display: "block"}}/>
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value)
   } }/>
-  <Button onClick={async()=> {albedo(); insertUser()}}><a href={'/home'}>Sign In</a></Button>
+  <Button onClick={async()=> {albedo()}}><a href={'/home'}>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
   </Card>
   </Grid>
@@ -62,21 +58,26 @@ export function SignUp(){
   email: email,
   password: pwd,
 })
-console.log(error)
   }
 
   return(
     <>
-    <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
+    <Grid container justifyContent={"center"} alignContent={"center"}>
+      <Card>
+  <Typography>The DummyStore!</Typography>
+  <Typography>Welcome!</Typography>     
+          <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
       setMail(e.target.value);
     }} style={{display: "block"}}/>
     <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
       setPwd(e.target.value);
     } }/>
-    <Button onClick={creator}>Sign Up!</Button>
+    <Button onClick={()=> {creator(); insertUser()}}>Sign Up!</Button>
    <p style={{display:"block"}}>Already have an account?
-    <a href={'/sign-in'}><u>Sign in here</u></a>
     </p>
+    <p className="center_text"><a href={'/sign-in'}><u>Sign in here</u></a></p>
+    </Card>
+    </Grid>
     </>
   )
 }
