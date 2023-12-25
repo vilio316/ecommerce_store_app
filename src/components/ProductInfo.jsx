@@ -9,9 +9,8 @@ import { addToSupa, deleteFromSupa, pickSlice} from '../features/cart/cartSlice'
 import { addItem, removeItem } from "../features/cart/cartSlice"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
 
-export default function ProductInfo(){
+export function ProductInfo(){
     let [cart_state, updateCartState] = useState([])
-    let [index, updateIndex] = useState(0)
     useEffect(()=>{ async function fetchfromSupa(){
         const {data} = await supaInit.from("cart_updated").select("cart");
         updateCartState(data[0].cart);
@@ -29,7 +28,6 @@ export default function ProductInfo(){
         quantity: qty,
         id : `${product_data.id}`,
         thumbnail: `${product_data.thumbnail}`,
-        position: index,
     }
     console.log(cart_state)
     return(
@@ -68,7 +66,6 @@ export default function ProductInfo(){
                     <Button color="success" variant="outlined" onClick={
                         ()=>{ 
                             updateCartState({...cart_state, productCartDetails})
-                            updateIndex((index)=> index + 1)
                         dispatch(itemAdded(Number(qty)));
                         dispatch(priceTotal(Number(productCartDetails.price) * qty));
                         dispatch(addToSupa(productCartDetails, cart_state))
@@ -95,5 +92,4 @@ export default function ProductInfo(){
        </>
 )
 }
-
  

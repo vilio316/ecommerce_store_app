@@ -45,7 +45,7 @@ return(
                     <TableCell align="right">{Number(item.price) * Number(item.quantity)}</TableCell>
                 </TableRow>
 )}
-            <TableRow>
+  <TableRow>
                 <TableCell colSpan={2}
                 ><Typography paragraph variant="h4">
                     Grand Total
@@ -53,7 +53,7 @@ return(
                     </TableCell>
                     <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "right", fontSize:"1.75rem"}}>${cart_price}</p></TableCell>
             </TableRow>
-        </TableBody>
+        </TableBody> 
     </Table>
     <div className="grid centered_items">
     <Button color="success"  variant="contained" style={{width: "50%"}}>

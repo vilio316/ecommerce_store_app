@@ -8,7 +8,7 @@ export function ProductCard(props){
   let product = props.entry;
 let [omega, useOmega] = useState(true);
 return(
-  <Grid item xs={12} sm={6} md={3} key={product.title}>
+  <Grid item xs={6} md={3} key={product.title}>
     <div className="grid centered_items">
       <Card className="styled_card">
         <CardContent>        

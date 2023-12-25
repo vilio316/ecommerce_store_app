@@ -13,8 +13,8 @@ export default function Header(){
         let id ;
         let bleacher = await supaInit.from("cart_updated").select("id")
         id = bleacher.data[0].id;
-        const {data}  = await supaInit.from("cart_updated").select("item_number").eq("id", id);
-        numberSwitch(data[0].item_number)
+        const {data}  = await supaInit.from("cart_updated").select("cart").eq("id", id);
+        numberSwitch(data[0].cart.length)
     }
     getNo()
 }, [])
