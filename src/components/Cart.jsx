@@ -17,7 +17,7 @@ return(
     <Typography paragraph variant="h3">
         Checkout
     </Typography>
-    <Table aria-label="Cart Table">
+    <Table aria-label="Cart Table" style={{width: "75%"}}>
         <TableHead>
             <TableRow>
                 <TableCell align="center">Item Name</TableCell>
@@ -30,7 +30,7 @@ return(
             {cart_items.map((item)=>  <TableRow key={Math.random()* 2000}>
                     <TableCell>
                         <Grid container>
-                            <Grid item xs={6}>
+                            <Grid item xs={4} md={6}>
                                 <div className="grid centered_items">
                             <img src={item.thumbnail} style={{width: "10rem"}} className="rounded_images"/>
                             </div>

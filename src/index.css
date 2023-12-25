@@ -83,4 +83,7 @@ a:hover{
     grid-template-columns: auto;
     place-items: center;
   }
+  html{
+    font-size: 10px;
+  }
 }
