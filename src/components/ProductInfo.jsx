@@ -53,7 +53,16 @@ export function ProductInfo(){
                     <div className="product_desc">
                       <p>{product_data.description}</p>
                     </div>
-                    <label htmlFor="qty">Quantity: <input type="number" defaultValue={1} min={1} max={10} onChange={(e)=> increaseQty(e.target.value)} id="qty"></input>
+                    <label htmlFor="qty">Quantity:<button className="round_buttons" onClick={()=> {
+                        if(qty > 1) increaseQty((numb) => numb - 1)
+                    }}>
+                        -
+                        </button> 
+                        <input type="number" readOnly min={1} max={10} value={qty} id="qty" style={{margin: "0 0.5rem", outline: "none"}}/> 
+                    <button color='success' className="round_buttons" onClick={()=>{
+                        increaseQty((numb) => numb + 1)
+                    }}>
+                         + </button> 
                    </label>
                    <form style={{margin: "0.5rem 0"}}>
                        <input type="radio" name="payplan"></input>

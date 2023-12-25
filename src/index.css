@@ -14,6 +14,19 @@ grid-template-columns: auto auto auto auto auto;
 .two_cols{
   grid-template-columns: auto auto;
 }
+.round_buttons{
+  padding: 0;
+  margin: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+.round_buttons:hover{
+  border: 0.0625rem solid green;
+}
 .four_cols{
   grid-template-columns: auto auto auto auto;
 }
