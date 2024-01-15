@@ -3,7 +3,8 @@ import { FavoriteRounded, ShoppingCart } from "@mui/icons-material";
 import { useLoaderData } from "react-router-dom";
 import { testTheme} from "../assets/mui_themes/themes";
 import { useState } from "react";
-
+import Footer from "./Footer";
+import Header from "./Header";
 export function ProductCard(props){
   let product = props.entry;
 let [omega, useOmega] = useState(true);
@@ -42,7 +43,7 @@ export default function ProductsHomepage() {
     let ostriches = products.products;
         return(
         <>
-        <ThemeProvider theme={testTheme}>
+        <Header/>
         <Typography paragraph variant="h4">All Products</Typography>
         <Grid container spacing={1.5} marginBottom={1.5}>
         {ostriches.map((product) => <ProductCard entry={product} key={product.id}/> )}
@@ -57,8 +58,9 @@ export default function ProductsHomepage() {
           <Button><a href={'/products/5'} className="no_deco">5</a></Button>
         </ButtonGroup>
         </Grid>
-        </ThemeProvider>
+        <Footer/>
         </>
     )
     }
+
 <ProductsHomepage/>

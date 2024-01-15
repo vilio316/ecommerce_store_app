@@ -5,15 +5,18 @@ import {Button} from "@mui/material";
 import supaInit from "../supabase/supaconfig";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default function Cart(){
 let [total, setTotal] = useState(0);
 let cart_price = useSelector((state)=> state.number.total);
-
 
 let cart_items = useLoaderData();
 console.log(cart_items)
 return(
     <>
+    <Header/>
     <Typography paragraph variant="h3">
         Checkout
     </Typography>
@@ -61,6 +64,7 @@ return(
     < span style={{color:'white', padding:"0.5rem 0 "}}>Proceed to Checkout</span>
     </Button>
     </div>
+    <Footer></Footer>
 </>
 )
 }

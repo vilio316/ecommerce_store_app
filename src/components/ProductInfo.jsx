@@ -8,6 +8,8 @@ import supaInit from "../supabase/supaconfig"
 import { addToSupa, deleteFromSupa, pickSlice} from '../features/cart/cartSlice';
 import { addItem, removeItem } from "../features/cart/cartSlice"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
+import Header from "./Header"
+import Footer from "./Footer"
 
 export function ProductInfo(){
     let [cart_state, updateCartState] = useState([])
@@ -33,6 +35,7 @@ export function ProductInfo(){
     return(
         <>
         <ThemeProvider theme={testTheme}>
+            <Header/>
         <Grid container spacing={1} justifyContent={"center"} alignContent={"center"} mb={3}>
             <Grid item xs={12} md={4} justifySelf={"center"} alignSelf={"center"}>
             <img 
@@ -97,6 +100,7 @@ export function ProductInfo(){
            </Card>
        </Grid>
        </Grid>
+       <Footer/>
        </ThemeProvider>
        </>
 )

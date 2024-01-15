@@ -30,7 +30,7 @@ const {data, err} = await supaInit.from("cart_updated").insert(
 
 return(
   <>
-  <Grid container justifyContent={"center"}>
+  <Grid container justifyContent={"center"} alignContent={"center"}>
   <Card>
   <Typography>The DummyStore!</Typography>
   <Typography>Welcome!</Typography>         

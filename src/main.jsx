@@ -64,12 +64,9 @@ path: 'products/cart', loader: ()=> {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
   <Provider store={cartStore}>
-  <Header/>
     <ThemeProvider theme={testTheme}>
 <RouterProvider router={availableRoutes}/>
 </ThemeProvider>
 </Provider>
-<Footer/>
-
 </>
 )

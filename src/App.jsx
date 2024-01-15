@@ -4,6 +4,9 @@ import demoImg from './assets/react.svg'
 import { testTheme } from './assets/mui_themes/themes';
 import { useLoaderData } from 'react-router-dom';
 import { ProductCard } from './components/ProductsHomepage';
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 function App() {
   function Hero(){
     return(   
@@ -81,9 +84,11 @@ function App() {
     }
   return(
   <>
+    <Header></Header>
     <Hero/>
     <Products/>
     <NextSection/>
+    <Footer/>
     </>
   )
   
