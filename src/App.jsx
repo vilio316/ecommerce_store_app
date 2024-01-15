@@ -14,7 +14,7 @@ function App() {
         <div className="grid centered_items" style={{width: "50%"}}>
             <Typography paragraph variant="h4">The Dummy Store</Typography>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus tempora sint inventore quae provident possimus minus, totam, dolorum blanditiis earum unde laudantium rem ratione magnam ipsum repellendus beatae aspernatur minima.</p>
-            <a href={"/products/1"}><Button variant='contained' color="error" onClick={()=> console.log("Wryyyyyyyyyy")} size='small'>Discover our Collection</Button></a>
+            <a href={"/products/1"}><Button variant='contained' color="error" size='small'>Discover our Collection</Button></a>
         </div>
       </div>
     )

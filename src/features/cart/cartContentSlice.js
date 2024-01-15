@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 const cartContentSlice = createSlice({
     name: "number",
     initialState:{
@@ -25,3 +25,4 @@ const cartContentSlice = createSlice({
 export const cartLength = (state) => state.number.value;
 export default cartContentSlice.reducer
 export const {itemAdded, itemRemoved, priceTotal} = cartContentSlice.actions
+

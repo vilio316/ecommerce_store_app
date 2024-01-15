@@ -4,10 +4,16 @@ import { useState, useEffect, useRef } from "react"
 import { Auth } from "@supabase/auth-ui-react"
 import App from "../App"
 import { Button, Card, Grid, TextField, Typography } from "@mui/material"
+import { updateID } from "../features/cart/idSlice"
+import { useDispatch } from "react-redux"
+
 
 export function SignInWmail(){
 let [email, setMail] = useState();
+const dispatch = useDispatch();
+
 let [pwd, setPwd]= useState();
+
 async function albedo(){
 const { data, error } = await supaInit.auth.signInWithPassword({
   email: email,
@@ -15,6 +21,7 @@ const { data, error } = await supaInit.auth.signInWithPassword({
 }
 )
 console.log(data)
+dispatch(updateID(data.user.id))
 }
 
 async function insertUser(){
@@ -34,13 +41,14 @@ return(
   <Card>
   <Typography>The DummyStore!</Typography>
   <Typography>Welcome!</Typography>         
-  <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
-    setMail(e.target.value);
-  }} style={{display: "block"}}/>
+  <TextField label="Email Address" autoFocus variant="outlined"  style={{display: "block"}} onChange={(e)=> {
+    setMail(e.target.value)
+  }}/>
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value)
   } }/>
-  <Button onClick={async()=> {albedo()}}><a href={'/home'}>Sign In</a></Button>
+
+  <Button onClick={async()=> {albedo()}}><a>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
   </Card>
   </Grid>
@@ -73,7 +81,7 @@ export function SignUp(){
       setPwd(e.target.value);
     } }/>
     <Button onClick={()=> {creator(); insertUser()}}>Sign Up!</Button>
-   <p style={{display:"block"}}>Already have an account?
+   <p style={{display:"block", textAlign:"center"}}>Already have an account?
     </p>
     <p className="center_text"><a href={'/sign-in'}><u>Sign in here</u></a></p>
     </Card>
