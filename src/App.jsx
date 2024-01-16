@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import { Button, Card, CardActionArea, CardContent, CardHeader, CardMedia, Fab, Grid, Icon, IconButton, Rating, ThemeProvider, Typography, createTheme} from '@mui/material';
 import demoImg from './assets/react.svg'
-import { testTheme } from './assets/mui_themes/themes';
 import { useLoaderData } from 'react-router-dom';
 import { ProductCard } from './components/ProductsHomepage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
+
   function Hero(){
     return(   
       <div className="grid centered_items hero">

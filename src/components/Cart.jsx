@@ -2,17 +2,28 @@ import { Grid, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typ
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ShoppingCartCheckout } from "@mui/icons-material";
 import {Button} from "@mui/material";
-import supaInit from "../supabase/supaconfig";
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import { user_id } from "../features/cart/idSlice";
+import supaInit from "../supabase/supaconfig";
 
+;
 export default function Cart(){
 let [total, setTotal] = useState(0);
 let cart_price = useSelector((state)=> state.number.total);
+let uuid = useSelector(user_id);
+let [cart_items, cartLoad] = useState([])
 
-let cart_items = useLoaderData();
+useEffect(()=> {async function fFS(){
+    let {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid);
+    console.table(data[0].cart)
+    
+}
+fFS()
+}
+, [])
+
 console.log(cart_items)
 return(
     <>
@@ -20,7 +31,7 @@ return(
     <Typography paragraph variant="h3">
         Checkout
     </Typography>
-    <Table aria-label="Cart Table" style={{width: "75%"}}>
+    <Table aria-label="Cart Table" style={{width: "90%"}}>
         <TableHead>
             <TableRow>
                 <TableCell align="center">Item Name</TableCell>

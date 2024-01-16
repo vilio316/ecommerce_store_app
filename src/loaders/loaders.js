@@ -1,4 +1,6 @@
 import supaInit from "../supabase/supaconfig";
+import { useSelector } from "react-redux";
+import { user_id } from "../features/cart/idSlice";
 
 let baseURL = "https://dummyjson.com/"
 
@@ -15,10 +17,7 @@ export async function fetchProductInfo(id){
 }
 
 export async function fetchFromSupaBase(){
-    let id;
-    const blaster = await supaInit.from("cart_updated").select("id");
-    id = blaster.data[0].id
-    console.log(id)
-    let {data} = await supaInit.from("cart_updated").select("cart").eq("id", id);
+    let uuid_value =  useSelector(user_id);
+    let {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid_value);
     return data[0].cart
 }

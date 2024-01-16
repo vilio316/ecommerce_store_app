@@ -4,13 +4,13 @@ import { useState, useEffect, useRef } from "react"
 import { Auth } from "@supabase/auth-ui-react"
 import App from "../App"
 import { Button, Card, Grid, TextField, Typography } from "@mui/material"
-import { updateID } from "../features/cart/idSlice"
+import { updateID, deleteID} from "../features/cart/idSlice"
 import { useDispatch } from "react-redux"
 
 
 export function SignInWmail(){
 let [email, setMail] = useState();
-const dispatch = useDispatch();
+const pushFeature = useDispatch();
 
 let [pwd, setPwd]= useState();
 
@@ -21,7 +21,7 @@ const { data, error } = await supaInit.auth.signInWithPassword({
 }
 )
 console.log(data)
-dispatch(updateID(data.user.id))
+pushFeature(updateID(data.user.id))
 }
 
 async function insertUser(){
@@ -50,6 +50,10 @@ return(
 
   <Button onClick={async()=> {albedo()}}><a>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
+
+
+  <p className="center_text"><a href={'/home'}><u>To Home</u></a></p>
+
   </Card>
   </Grid>
   </>
@@ -92,4 +96,5 @@ export function SignUp(){
 
 export async function signOut(){
   const { error } = await supaInit.auth.signOut()
+  pushFeature(deleteID())
 }

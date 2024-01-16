@@ -5,19 +5,22 @@ import { cartLength } from "../features/cart/cartContentSlice";
 import { signOut } from "../supabase/authfiles";
 import { useEffect, useState } from "react";
 import supaInit from "../supabase/supaconfig";
+import { user_id } from "../features/cart/idSlice";
+
 export default function Header(){
     let cart_length = Number(useSelector(cartLength));
     let [number, numberSwitch] = useState(0);
+    let uuid = useSelector(user_id) 
 
-    useEffect(()=> {async function getNo(){
-        let id ;
-        let bleacher = await supaInit.from("cart_updated").select("id")
-        id = bleacher.data[0].id;
-        const {data}  = await supaInit.from("cart_updated").select("cart").eq("id", id);
-        numberSwitch(data[0].cart.length)
+    useEffect(()=> {async function getNo(){ 
+        const {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid);
+        let badge_val = data[0].cart.length;
+        console.log(badge_val)
+        numberSwitch(badge_val)
     }
     getNo()
 }, [])
+
     return(
         <div className="grid five_cols centered_items nav_bar">
             <p style={{fontSize:"1.5rem", fontWeight:"bold"}}><a href={'/'}>TheDummyStore</a></p>

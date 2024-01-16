@@ -52,12 +52,14 @@ const availableRoutes = createBrowserRouter([
   }, errorElement: <ErrorPage/>
 },
 {
-path: 'products/cart', loader: ()=> {
-  return fetchFromSupaBase();
-},element : <Cart/>, errorElement: <ErrorPage/>
+path: 'products/cart',
+element : <Cart/>, 
+errorElement: <ErrorPage/>
 },
 {
-  path: "/home" , element: <App/>, loader: ()=> {return fetchProducts(4,0)}, 
+  path: "/home" , 
+  element: <App/>, 
+  loader: ()=> {return fetchProducts(4,0)}, 
   errorElement: <ErrorPage/>
 }
 ])

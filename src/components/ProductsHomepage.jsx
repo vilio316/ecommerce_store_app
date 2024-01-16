@@ -1,7 +1,6 @@
 import { Card, CardMedia, ThemeProvider, Typography, CardContent, CardActionArea, IconButton, Grid, ButtonGroup, Button } from "@mui/material";
 import { FavoriteRounded, ShoppingCart } from "@mui/icons-material";
 import { useLoaderData } from "react-router-dom";
-import { testTheme} from "../assets/mui_themes/themes";
 import { useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -60,7 +59,7 @@ export default function ProductsHomepage() {
         </Grid>
         <Footer/>
         </>
-    )
-    }
+        )
+        }
 
 <ProductsHomepage/>
