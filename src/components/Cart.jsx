@@ -1,32 +1,25 @@
 import { Grid, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ShoppingCartCheckout } from "@mui/icons-material";
+import supaInit from "../supabase/supaconfig";
 import {Button} from "@mui/material";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { user_id } from "../features/cart/idSlice";
-import supaInit from "../supabase/supaconfig";
 
 ;
 export default function Cart(){
-let [total, setTotal] = useState(0);
+//let [total, setTotal] = useState(0);
 let cart_price = useSelector((state)=> state.number.total);
-let uuid = useSelector(user_id);
-let [cart_items, cartLoad] = useState([])
 
-useEffect(()=> {async function fFS(){
-    let {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid);
-    console.table(data[0].cart)
-    
-}
-fFS()
-}
-, [])
 
-console.log(cart_items)
+
 return(
-    <>
+<div>
+    <p>Ligma Barusu!</p>
+</div> 
+   /* <>
     <Header/>
     <Typography paragraph variant="h3">
         Checkout
@@ -56,7 +49,7 @@ return(
                         </TableCell>
                     <TableCell align="right">{item.quantity}</TableCell>
                     <TableCell align="right">{item.price}</TableCell>
-                    <TableCell align="right">{Number(item.price) * Number(item.quantity)}</TableCell>
+                    <TableCell align="right">{Number(String(item.price)) * Number(String(item.quantity))}</TableCell>
                 </TableRow>
 )}
   <TableRow>
@@ -77,5 +70,6 @@ return(
     </div>
     <Footer></Footer>
 </>
+*/
 )
 }

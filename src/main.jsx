@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx' 
 import {ProductInfo} from './components/ProductInfo.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Header from './components/Header.jsx'
-import Footer from './components/Footer.jsx'
 import Cart from '../src/components/Cart.jsx'
 import ProductsHomepage from './components/ProductsHomepage.jsx'
-import { fetchFromSupaBase, fetchProductInfo, fetchProducts } from './loaders/loaders.js'
 import ErrorPage from './components/ErrorPage.jsx'
 import { Provider } from 'react-redux'
 import { cartStore } from './app/store.js'
 import { ThemeProvider } from '@mui/material'
 import { testTheme } from './assets/mui_themes/themes.js'
 import { SignInWmail, SignUp } from './supabase/authfiles.jsx'
+import { fetchProductInfo, getCart, fetchProducts} from './loaders/loaders.jsx'
+
+
 const availableRoutes = createBrowserRouter([
   {
   path: '/sign-in', element: <SignInWmail/>, errorElement: <ErrorPage/>
@@ -54,7 +54,10 @@ const availableRoutes = createBrowserRouter([
 {
 path: 'products/cart',
 element : <Cart/>, 
-errorElement: <ErrorPage/>
+loader: ()=>{
+  getCart()
+},
+errorElement: <ErrorPage/>,
 },
 {
   path: "/home" , 
