@@ -13,12 +13,15 @@ export default function Cart(){
 //let [total, setTotal] = useState(0);
 let [cart, cartLoad] = useState([])
 let cart_price = useSelector((state)=> state.number.total);
-let user = useSelector(user_id)
+let user = useSelector((state)=> state.uuid.id_val)
 
 useEffect(()=> {async function getCart(){
-    const {data} = await supaInit.from("cart_updated").select("cart").eq("id", user);
-    cartLoad(...cart, data[0].cart)
+    if(user){
+    const {data, error} = await supaInit.from("cart_updated").select("cart").eq("id", user);
+    console.log(data[0].cart);
+    console.log(error)
     }
+};
     getCart()
 }, [])
 
@@ -63,7 +66,6 @@ return(
                     Grand Total
                     </Typography>
                     </TableCell>
-                    <TableCell colSpan={2}><p style={{fontWeight: "bold", textAlign: "right", fontSize:"1.75rem"}}>${cart_price}</p></TableCell>
             </TableRow>
         </TableBody> 
     </Table>

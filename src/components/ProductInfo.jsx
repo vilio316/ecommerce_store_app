@@ -5,8 +5,8 @@ import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import supaInit from "../supabase/supaconfig"
-import { addToSupa, deleteFromSupa, pickSlice} from '../features/cart/cartSlice';
-import { addItem, removeItem } from "../features/cart/cartSlice"
+import { addToSupa, deleteFromSupa} from '../features/cart/cartSlice.js';
+import { addItem, removeItem } from "../features/cart/cartSlice.js"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
 import Header from "./Header"
 import Footer from "./Footer"

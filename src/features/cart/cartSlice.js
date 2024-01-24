@@ -29,6 +29,7 @@ export const addToSupa = (item, array)=> async(dispatch)=>{
         item_number : array.length,
     }).eq("id", id);
 }
+
 export const deleteFromSupa = (item, array)=> async(dispatch)=>{
    dispatch(removeItem(item));
    let str = item.name

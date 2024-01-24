@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux"
 
 export function SignInWmail(){
 let [email, setMail] = useState();
-const pushFeature = useDispatch();
+const dispatch = useDispatch();
 
 let [pwd, setPwd]= useState();
 
@@ -21,19 +21,9 @@ const { data, error } = await supaInit.auth.signInWithPassword({
 }
 )
 console.log(data)
-pushFeature(updateID(data.user.id))
+console.log(error)
+dispatch(updateID(data.user.id))
 }
-
-async function insertUser(){
-const {data, err} = await supaInit.from("cart_updated").insert(
-  { 
-    total_price : "0", 
-    cart: [], 
-    item_number: "0",
-  }
-  )
-}
-
 
 return(
   <>
@@ -72,6 +62,16 @@ export function SignUp(){
 })
   }
 
+  async function insertUser(){
+    const {data, err} = await supaInit.from("cart_updated").insert(
+      { 
+        total_price : "0", 
+        cart: [], 
+        item_number: "0",
+      }
+      )
+    }
+
   return(
     <>
     <Grid container justifyContent={"center"} alignContent={"center"}>
@@ -96,5 +96,5 @@ export function SignUp(){
 
 export async function signOut(){
   const { error } = await supaInit.auth.signOut()
-  pushFeature(deleteID())
+  dispatch(deleteID())
 }
