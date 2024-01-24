@@ -1,8 +1,9 @@
 let baseURL = "https://dummyjson.com/"
 import { useSelector } from "react-redux";
 import supaInit from "../supabase/supaconfig";
-import { user_id } from "../features/cart/idSlice";
 import { cartStore } from "../app/store";
+import { user_id } from "../features/cart/idSlice";
+
 
     async function fetchProducts(n, skips){
     let all_products_call = await fetch(`${baseURL}products?limit=${n}&skip=${skips}`)
@@ -15,16 +16,10 @@ import { cartStore } from "../app/store";
     let product_res = await product_call.json();
     return product_res;
 }
-    const getCart = async() =>{
-        console.log(cartStore.getState())
-       /* const {data} = await supaInit.from("cart_updated").select("cart").eq("id", id);
-        let omicron = data[0].cart;
-        console.log(omicron) */
-        
-    }
 
-
-
-
-export {fetchProductInfo, fetchProducts, getCart}
+export default function ReachId(){
+    const user = useSelector(user_id)
+    console.log(user)
+}
+export {fetchProductInfo, fetchProducts}
 

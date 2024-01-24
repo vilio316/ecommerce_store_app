@@ -11,15 +11,20 @@ import { user_id } from "../features/cart/idSlice";
 ;
 export default function Cart(){
 //let [total, setTotal] = useState(0);
+let [cart, cartLoad] = useState([])
 let cart_price = useSelector((state)=> state.number.total);
+let user = useSelector(user_id)
 
+useEffect(()=> {async function getCart(){
+    const {data} = await supaInit.from("cart_updated").select("cart").eq("id", user);
+    cartLoad(...cart, data[0].cart)
+    }
+    getCart()
+}, [])
 
 
 return(
-<div>
-    <p>Ligma Barusu!</p>
-</div> 
-   /* <>
+   <>
     <Header/>
     <Typography paragraph variant="h3">
         Checkout
@@ -34,7 +39,7 @@ return(
             </TableRow>
         </TableHead>
         <TableBody>
-            {cart_items.map((item)=>  <TableRow key={Math.random()* 2000}>
+            {cart.map((item)=>  <TableRow key={Math.random()* 2000}>
                     <TableCell>
                         <Grid container>
                             <Grid item xs={4} md={6}>
@@ -70,6 +75,6 @@ return(
     </div>
     <Footer></Footer>
 </>
-*/
+
 )
 }

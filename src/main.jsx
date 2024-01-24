@@ -11,8 +11,7 @@ import { cartStore } from './app/store.js'
 import { ThemeProvider } from '@mui/material'
 import { testTheme } from './assets/mui_themes/themes.js'
 import { SignInWmail, SignUp } from './supabase/authfiles.jsx'
-import { fetchProductInfo, getCart, fetchProducts} from './loaders/loaders.jsx'
-
+import { fetchProductInfo, fetchProducts} from './loaders/loaders.jsx'
 
 const availableRoutes = createBrowserRouter([
   {
@@ -53,10 +52,7 @@ const availableRoutes = createBrowserRouter([
 },
 {
 path: 'products/cart',
-element : <Cart/>, 
-loader: ()=>{
-  getCart()
-},
+element : <Cart/>,
 errorElement: <ErrorPage/>,
 },
 {
