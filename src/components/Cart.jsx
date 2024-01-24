@@ -7,21 +7,22 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { user_id } from "../features/cart/idSlice";
+import { useLoaderData } from "react-router-dom";
 
 ;
 export default function Cart(){
 //let [total, setTotal] = useState(0);
 let [cart, cartLoad] = useState([])
 let cart_price = useSelector((state)=> state.number.total);
-let user = useSelector((state)=> state.uuid.id_val)
+let user = useLoaderData();
+console.log(user)
 
-useEffect(()=> {async function getCart(){
-    if(user){
+ useEffect(()=> {async function getCart(){
     const {data, error} = await supaInit.from("cart_updated").select("cart").eq("id", user);
     console.log(data[0].cart);
-    console.log(error)
+    cartLoad(...cart, data[0].cart)
     }
-};
+
     getCart()
 }, [])
 
@@ -51,7 +52,7 @@ return(
                             </div>
                             </Grid>
                             <Grid item alignSelf={"center"}>
-                            <p><a href={`/product/${item.id}`}>{item.name}</a></p>
+                            <p style={{display: "block"}}><a href={`/product/${item.id}`}>{item.name}</a></p>
                             </Grid>
                         </Grid>
                         </TableCell>
@@ -60,13 +61,6 @@ return(
                     <TableCell align="right">{Number(String(item.price)) * Number(String(item.quantity))}</TableCell>
                 </TableRow>
 )}
-  <TableRow>
-                <TableCell colSpan={2}
-                ><Typography paragraph variant="h4">
-                    Grand Total
-                    </Typography>
-                    </TableCell>
-            </TableRow>
         </TableBody> 
     </Table>
     <div className="grid centered_items">

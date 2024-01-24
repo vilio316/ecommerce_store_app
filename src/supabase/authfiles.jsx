@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux"
 export function SignInWmail(){
 let [email, setMail] = useState();
 const dispatch = useDispatch();
-
+let [id, switchState]= useState("")
 let [pwd, setPwd]= useState();
 
 async function albedo(){
@@ -20,10 +20,10 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   password: pwd,
 }
 )
+switchState(data.user.id)
 console.log(data)
-console.log(error)
-dispatch(updateID(data.user.id))
 }
+dispatch(updateID(id))
 
 return(
   <>
@@ -38,7 +38,10 @@ return(
     setPwd(e.target.value)
   } }/>
 
-  <Button onClick={async()=> {albedo()}}><a>Sign In</a></Button>
+  <Button onClick={()=> {
+    albedo(); 
+   
+    }}><a>Sign In</a></Button>
   <p>Don't have an account? <a href='/'>Sign Up</a></p>
 
 
@@ -84,7 +87,10 @@ export function SignUp(){
     <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
       setPwd(e.target.value);
     } }/>
-    <Button onClick={()=> {creator(); insertUser()}}>Sign Up!</Button>
+    <Button onClick={()=> {
+      creator(); 
+      insertUser();
+      }}>Sign Up!</Button>
    <p style={{display:"block", textAlign:"center"}}>Already have an account?
     </p>
     <p className="center_text"><a href={'/sign-in'}><u>Sign in here</u></a></p>
@@ -95,6 +101,6 @@ export function SignUp(){
 }
 
 export async function signOut(){
-  const { error } = await supaInit.auth.signOut()
+  const { error } = await supaInit.auth.signOut();
   dispatch(deleteID())
 }

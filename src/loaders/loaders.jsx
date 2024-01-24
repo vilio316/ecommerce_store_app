@@ -17,9 +17,9 @@ import { user_id } from "../features/cart/idSlice";
     return product_res;
 }
 
-export default function ReachId(){
-    const user = useSelector(user_id)
-    console.log(user)
-}
-export {fetchProductInfo, fetchProducts}
+    async function fetchID(){
+        let id_search = await supaInit.from("cart_updated").select("id")
+        return id_search.data[0].id
+    }
+export {fetchProductInfo, fetchProducts, fetchID}
 
