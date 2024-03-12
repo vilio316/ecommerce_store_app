@@ -6,10 +6,13 @@ import App from "../App"
 import { Button, Card, Grid, TextField, Typography } from "@mui/material"
 import { updateID, deleteID} from "../features/cart/idSlice"
 import { useDispatch } from "react-redux"
+import { useFindFoodQuery } from "./supaSlice"
 
 
 export function SignInWmail(){
 let [email, setMail] = useState();
+const {data} = useFindFoodQuery("Apple")
+console.log(data)
 const dispatch = useDispatch();
 let [id, switchState]= useState("")
 let [pwd, setPwd]= useState();
@@ -24,6 +27,7 @@ switchState(data.user.id)
 console.log(data)
 }
 dispatch(updateID(id))
+
 
 return(
   <>
