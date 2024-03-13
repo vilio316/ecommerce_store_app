@@ -14,12 +14,10 @@ export default function Cart(){
 //let [total, setTotal] = useState(0);
 let [cart, cartLoad] = useState([])
 let cart_price = useSelector((state)=> state.number.total);
-let user = useLoaderData();
-console.log(user)
+let user = useSelector(user_id)
 
  useEffect(()=> {async function getCart(){
     const {data, error} = await supaInit.from("cart_updated").select("cart").eq("id", user);
-    console.log(data[0].cart);
     cartLoad(...cart, data[0].cart)
     }
 

@@ -4,18 +4,22 @@ import { useSelector } from "react-redux";
 import { cartLength } from "../features/cart/cartContentSlice";
 import { signOut } from "../supabase/authfiles";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteID } from "../features/cart/idSlice";
 import supaInit from "../supabase/supaconfig";
 import { user_id } from "../features/cart/idSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Header(){
     let cart_length = Number(useSelector(cartLength));
     let [number, numberSwitch] = useState(0);
     let uuid = useSelector(user_id) 
+    let navigate = useNavigate()
+    let dispatch = useDispatch()
 
     useEffect(()=> {async function getNo(){ 
         const {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid);
         let badge_val = data[0].cart.length;
-        console.log(badge_val)
         numberSwitch(badge_val)
     }
     getNo()
@@ -28,10 +32,13 @@ export default function Header(){
             <a>About Us</a>
             <a>Contact Us</a>
             <div className="grid centered_items two_cols">
-        <IconButton onClick={()=> signOut()}>
-            <a href={'/'}>
+        <IconButton onClick={() => {
+            dispatch(deleteID())
+            signOut();
+            navigate('/');
+        }}
+        >
             <Person color="secondary"/>
-            </a>
         </IconButton>
         <IconButton>
             <a href={'/products/cart'}>

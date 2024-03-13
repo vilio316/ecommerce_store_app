@@ -12,7 +12,7 @@ const id_to_store = createSlice({
         }
         ,
         deleteID: (state) => {
-            return {...state, id_val: ""}
+            return {...state, id_val: "0000"}
         }
     }
 })

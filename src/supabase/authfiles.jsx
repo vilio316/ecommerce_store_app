@@ -6,16 +6,14 @@ import App from "../App"
 import { Button, Card, Grid, TextField, Typography } from "@mui/material"
 import { updateID, deleteID} from "../features/cart/idSlice"
 import { useDispatch } from "react-redux"
-import { useFindFoodQuery } from "./supaSlice"
+import { useNavigate } from "react-router-dom"
 
 
 export function SignInWmail(){
-let [email, setMail] = useState();
-const {data} = useFindFoodQuery("Apple")
-console.log(data)
+let [email, setMail] = useState('');
 const dispatch = useDispatch();
-let [id, switchState]= useState("")
 let [pwd, setPwd]= useState();
+let navigate = useNavigate();
 
 async function albedo(){
 const { data, error } = await supaInit.auth.signInWithPassword({
@@ -23,10 +21,12 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   password: pwd,
 }
 )
-switchState(data.user.id)
+if(data){
 console.log(data)
+dispatch(updateID(data.user.id))
+navigate('/home')
 }
-dispatch(updateID(id))
+}
 
 
 return(
@@ -42,15 +42,8 @@ return(
     setPwd(e.target.value)
   } }/>
 
-  <Button onClick={()=> {
-    albedo(); 
-   
-    }}><a>Sign In</a></Button>
-  <p>Don't have an account? <a href='/'>Sign Up</a></p>
-
-
-  <p className="center_text"><a href={'/home'}><u>To Home</u></a></p>
-
+  <Button onClick={()=> {albedo()}}><a>Sign In</a></Button>
+  <p>Don't have an account? <a href='/sign-up'>Sign Up</a></p>
   </Card>
   </Grid>
   </>
@@ -61,6 +54,7 @@ return(
 export function SignUp(){
   let [email, setMail] = useState();
   let [pwd, setPwd]= useState();
+  let navigate = useNavigate();
 
   const creator = async()=>{
     const { data, error } = await supaInit.auth.signUp({
@@ -77,6 +71,7 @@ export function SignUp(){
         item_number: "0",
       }
       )
+      navigate('/')
     }
 
   return(
@@ -103,8 +98,6 @@ export function SignUp(){
     </>
   )
 }
-
-export async function signOut(){
+ export async function signOut(){
   const { error } = await supaInit.auth.signOut();
-  dispatch(deleteID())
 }

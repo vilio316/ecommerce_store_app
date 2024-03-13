@@ -18,7 +18,7 @@ export const pickSlice = (state)=> state.cart
 export default cartSlice.reducer
 export const {addItem, removeItem} = cartSlice.actions
 
-export const addToSupa = (item, array)=> async(dispatch)=>{
+ export const addToSupa = (item, array)=> async(dispatch)=>{
     dispatch(addItem(item))
     array.push(item)
     let id;
@@ -44,6 +44,5 @@ export const deleteFromSupa = (item, array)=> async(dispatch)=>{
     item_number : array.length,
    }).eq("id", id);
 }
-
 
 
