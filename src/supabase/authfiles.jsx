@@ -14,6 +14,7 @@ let [email, setMail] = useState('');
 const dispatch = useDispatch();
 let [pwd, setPwd]= useState();
 let navigate = useNavigate();
+let error_txt = useRef("")
 
 async function albedo(){
 const { data, error } = await supaInit.auth.signInWithPassword({
@@ -21,10 +22,14 @@ const { data, error } = await supaInit.auth.signInWithPassword({
   password: pwd,
 }
 )
-if(data){
+if(data.user){
+error_txt.current.innerHTML = ""
 console.log(data)
 dispatch(updateID(data.user.id))
 navigate('/home')
+}
+else{
+  error_txt.current.innerHTML = "Incorrect Email or Password"
 }
 }
 
@@ -43,6 +48,7 @@ return(
   } }/>
 
   <Button onClick={()=> {albedo()}}><a>Sign In</a></Button>
+  <p ref={error_txt} style={{color: "red", fontSize:"1.5rem", fontWeight:"bold"}}></p>
   <p>Don't have an account? <a href='/sign-up'>Sign Up</a></p>
   </Card>
   </Grid>
@@ -99,5 +105,5 @@ export function SignUp(){
   )
 }
  export async function signOut(){
-  const { error } = await supaInit.auth.signOut();
+  const { data , error } = await supaInit.auth.signOut()
 }

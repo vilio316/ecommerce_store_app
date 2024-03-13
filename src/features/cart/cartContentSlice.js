@@ -19,10 +19,13 @@ const cartContentSlice = createSlice({
             if(state.total < 0){
                 state.total = 0
             }
-    }
+    }, 
+        priceReset : (state) => {
+            return {...state, value: 0, total:0 }
+        }
     }
 })
 export const cartLength = (state) => state.number.value;
 export default cartContentSlice.reducer
-export const {itemAdded, itemRemoved, priceTotal} = cartContentSlice.actions
+export const {itemAdded, itemRemoved, priceTotal, priceReset} = cartContentSlice.actions
 

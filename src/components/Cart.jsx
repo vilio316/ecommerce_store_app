@@ -9,9 +9,8 @@ import Footer from "./Footer";
 import { user_id } from "../features/cart/idSlice";
 import { useLoaderData } from "react-router-dom";
 
-;
 export default function Cart(){
-//let [total, setTotal] = useState(0);
+let [total, setTotal] = useState(0);
 let [cart, cartLoad] = useState([])
 let cart_price = useSelector((state)=> state.number.total);
 let user = useSelector(user_id)
@@ -23,7 +22,6 @@ let user = useSelector(user_id)
 
     getCart()
 }, [])
-
 
 return(
    <>
@@ -59,6 +57,7 @@ return(
                     <TableCell align="right">{Number(String(item.price)) * Number(String(item.quantity))}</TableCell>
                 </TableRow>
 )}
+
         </TableBody> 
     </Table>
     <div className="grid centered_items">

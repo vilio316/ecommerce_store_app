@@ -5,16 +5,18 @@ import { testTheme } from "../assets/mui_themes/themes"
 import { useLoaderData } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import supaInit from "../supabase/supaconfig"
+import { user_id } from "../features/cart/idSlice"
 import { addToSupa, deleteFromSupa} from '../features/cart/cartSlice.js';
-import { addItem, removeItem } from "../features/cart/cartSlice.js"
 import { itemAdded, itemRemoved, priceTotal } from "../features/cart/cartContentSlice";
 import Header from "./Header"
 import Footer from "./Footer"
 
 export function ProductInfo(){
+    const identity = useSelector(user_id)
+
     let [cart_state, updateCartState] = useState([])
     useEffect(()=>{ async function fetchfromSupa(){
-        const {data} = await supaInit.from("cart_updated").select("cart");
+        const {data} = await supaInit.from("cart_updated").select("cart").eq("id", identity);
         updateCartState(data[0].cart);
     }
     fetchfromSupa()
@@ -80,7 +82,7 @@ export function ProductInfo(){
                             updateCartState({...cart_state, productCartDetails})
                         dispatch(itemAdded(Number(qty)));
                         dispatch(priceTotal(Number(productCartDetails.price) * qty));
-                        dispatch(addToSupa(productCartDetails, cart_state))
+                        dispatch(addToSupa(productCartDetails, cart_state, identity))
                         }
                     }>
                         <AddShoppingCartSharp></AddShoppingCartSharp>
@@ -89,7 +91,7 @@ export function ProductInfo(){
                     <Button style={{marginLeft:"0.75rem"}} color="secondary" variant="outlined" onClick={()=> {
                         dispatch(itemRemoved(Number(qty)));
                         dispatch(priceTotal(- (Number(productCartDetails.price) * qty)))
-                        dispatch(deleteFromSupa(productCartDetails, cart_state))
+                        dispatch(deleteFromSupa(productCartDetails, cart_state, identity))
                     }    
                     }
                         >

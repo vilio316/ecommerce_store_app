@@ -6,6 +6,8 @@ import { signOut } from "../supabase/authfiles";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteID } from "../features/cart/idSlice";
+import { revertState } from "../features/cart/cartSlice";
+import { priceReset } from "../features/cart/cartContentSlice";
 import supaInit from "../supabase/supaconfig";
 import { user_id } from "../features/cart/idSlice";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +36,8 @@ export default function Header(){
             <div className="grid centered_items two_cols">
         <IconButton onClick={() => {
             dispatch(deleteID())
+            dispatch(revertState())
+            dispatch(priceReset())
             signOut();
             navigate('/');
         }}
