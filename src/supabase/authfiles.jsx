@@ -7,7 +7,7 @@ import { Button, Card, Grid, TextField, Typography } from "@mui/material"
 import { updateID, deleteID} from "../features/cart/idSlice"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-
+import { refreshState } from "../features/cart/cartSlice"
 
 export function SignInWmail(){
 let [email, setMail] = useState('');
@@ -32,7 +32,6 @@ else{
   error_txt.current.innerHTML = "Incorrect Email or Password"
 }
 }
-
 
 return(
   <>

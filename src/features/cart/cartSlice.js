@@ -13,13 +13,16 @@ const cartSlice = createSlice({
         },
         revertState: ()=> {
             return []
+        },
+        refreshState : (state, action) => {
+            state.concat(action.payload)
         }
     },
 })
 
 export const pickSlice = (state)=> state.cart
 export default cartSlice.reducer
-export const {addItem, removeItem, revertState} = cartSlice.actions
+export const {addItem, removeItem, revertState, refreshState} = cartSlice.actions
 
  export const addToSupa = (item, array, id)=> async(dispatch)=>{
     dispatch(addItem(item))

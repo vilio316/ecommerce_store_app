@@ -9,7 +9,6 @@ p{
   border-bottom: 0.25rem solid black;
 }
 body{
-  place-content: center;
   display: grid;
 }
 .five_cols{
@@ -52,7 +51,7 @@ justify-content: center;
   text-align: center;
 }
 .rounded_images{
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
 }
 .styled_card{
   width: 80%;
