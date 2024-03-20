@@ -2,16 +2,31 @@ import { configureStore} from '@reduxjs/toolkit'
 import cartReducer from '../features/cart/cartSlice.js'
 import numberReducer from '../features/cart/cartContentSlice.js'
 import uuidReducer from "../features/cart/idSlice.js"
-import { supaSlice } from '../supabase/supaSlice.js'
+import { persistStore, persistReducer,   FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER, } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
+const persistConfig = {
+    key: "root",
+    storage,
+}
 
+const persRed = persistReducer(persistConfig, uuidReducer)
 export const cartStore = configureStore({
     reducer:{
         cart: cartReducer,
         number: numberReducer,
-        uuid: uuidReducer,
-        [supaSlice.reducerPath]: supaSlice.reducer
+        uuid: persRed,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(supaSlice.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
 })
 
+export const persisted = persistStore(cartStore)

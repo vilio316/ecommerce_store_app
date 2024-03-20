@@ -7,11 +7,12 @@ import Cart from '../src/components/Cart.jsx'
 import ProductsHomepage from './components/ProductsHomepage.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 import { Provider } from 'react-redux'
-import { cartStore } from './app/store.js'
+import { cartStore, persisted } from './app/store.js'
 import { ThemeProvider } from '@mui/material'
 import { testTheme } from './assets/mui_themes/themes.js'
 import { SignInWmail, SignUp } from './supabase/authfiles.jsx'
 import { fetchID, fetchProductInfo, fetchProducts} from './loaders/loaders.jsx'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const availableRoutes = createBrowserRouter([
   {
@@ -69,7 +70,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <>
   <Provider store={cartStore}>
     <ThemeProvider theme={testTheme}>
+      <PersistGate persistor={persisted} loading={null}>
 <RouterProvider router={availableRoutes}/>
+</PersistGate>
 </ThemeProvider>
 </Provider>
 </>
