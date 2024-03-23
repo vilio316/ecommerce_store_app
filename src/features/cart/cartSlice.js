@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import supaInit from '../../supabase/supaconfig';
-import { useSelector } from 'react-redux';
-import { ContactSupportOutlined } from '@mui/icons-material';
+
 
 const cartSlice = createSlice({
     name: "cart",

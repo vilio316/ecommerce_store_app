@@ -6,10 +6,8 @@ import {Button} from "@mui/material";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useDispatch } from "react-redux";
-import { refreshState } from "../features/cart/cartSlice";
 import { user_id } from "../features/cart/idSlice";
-import { useLoaderData } from "react-router-dom";
+
 
 export default function Cart(){
 let [cart, cartLoad] = useState([])
