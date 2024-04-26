@@ -94,7 +94,7 @@ export function SignUp(){
       }}>Sign Up!</Button>
    <p style={{display:"block", textAlign:"center"}}>Already have an account?
     </p>
-    <p className="center_text"><a href={'/sign-in'}><u>Sign in here</u></a></p>
+    <p className="center_text"><a href={'/'}><u>Sign in here</u></a></p>
     </Card>
     </Grid>
     </>
