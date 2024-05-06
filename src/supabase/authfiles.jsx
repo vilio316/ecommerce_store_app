@@ -63,17 +63,22 @@ export function SignUp(){
   email: email,
   password: pwd,
 })
+
+return data
   }
 
   async function insertUser(){
+    const data_value = await creator();
+    const use_id = data_value.user.id;
     const {data, err} = await supaInit.from("cart_updated").insert(
       { 
+        id: use_id,
         total_price : "0", 
         cart: [], 
         item_number: "0",
       }
       )
-      navigate('/')
+      console.log(data)
     }
 
   return(
@@ -89,8 +94,8 @@ export function SignUp(){
       setPwd(e.target.value);
     } }/>
     <Button onClick={()=> {
-      creator(); 
       insertUser();
+      navigate('/')
       }}>Sign Up!</Button>
    <p style={{display:"block", textAlign:"center"}}>Already have an account?
     </p>
