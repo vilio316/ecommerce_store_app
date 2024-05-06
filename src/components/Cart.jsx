@@ -86,9 +86,22 @@ return(
     </Button>
     </div>
     <Footer></Footer>
-</> :   <p>
-    Nothing Yet!
-</p> } 
+</> :   <>
+<Header/>
+    <Typography paragraph variant="h3">
+        Checkout
+    </Typography>
+    <div style={{display: 'grid', justifyItems:"center", alignItems:"center", height:"70vh"}}>
+    <div>
+    <Typography paragraph variant="h2">
+    Nothing's in Your Cart Yet!
+    </Typography>
+    <p style={{textAlign:"center"}}>Click <a style={{textDecoration:"underline"}} href={`/home`}>here</a> to find exactly what fits you!</p>
+    
+    </div>
+    </div>
+    <Footer/>
+</>} 
 </>
 )
 }
