@@ -13,6 +13,7 @@ export default function Cart(){
 let [cart, cartLoad] = useState([])
 let [grandTotal, updateTotal] = useState(0)
 let user = useSelector(user_id)
+let [cart_size, setTrue] = useState(false)
 
 const looper_for_total = (array) =>{
     let total = 0
@@ -30,12 +31,16 @@ const looper_for_total = (array) =>{
     for(let i =0; i < omniverse.length; i++){
         updateTotal((state) => state += (omniverse[i].quantity * omniverse[i].price))
     }
+    if(omniverse.length > 0){
+        setTrue(true)
+    }
     }
     getCart()
 }, [])
 
 return(
-   <>
+    <>
+    {cart_size ? <>
     <Header/>
     <Typography paragraph variant="h3">
         Checkout
@@ -81,7 +86,9 @@ return(
     </Button>
     </div>
     <Footer></Footer>
+</> :   <p>
+    Nothing Yet!
+</p> } 
 </>
-
 )
 }

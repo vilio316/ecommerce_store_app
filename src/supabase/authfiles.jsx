@@ -21,7 +21,6 @@ const { data, error } = await supaInit.auth.signInWithPassword({
 )
 if(data.user){
 error_txt.current.innerHTML = ""
-console.log(data)
 dispatch(updateID(data.user.id))
 navigate('/home')
 }

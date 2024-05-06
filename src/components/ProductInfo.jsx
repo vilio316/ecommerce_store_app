@@ -33,7 +33,6 @@ export function ProductInfo(){
         id : `${product_data.id}`,
         thumbnail: `${product_data.thumbnail}`,
     }
-    console.log(cart_state)
     return(
         <>
         <ThemeProvider theme={testTheme}>
