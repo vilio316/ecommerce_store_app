@@ -42,7 +42,7 @@ return(
     setPwd(e.target.value)
   } }/>
 
-  <Button onClick={()=> {albedo()}}><a>Sign In</a></Button>
+  <Button variant='contained' color="success"  style={{display: "block"}} onClick={()=> {albedo()}}>Sign In</Button>
   <p ref={error_txt} style={{color: "red", fontSize:"1.5rem", fontWeight:"bold"}}></p>
   <p>Don't have an account? <a href='/sign-up'>Sign Up</a></p>
   </Card>
@@ -92,7 +92,7 @@ return data
     <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
       setPwd(e.target.value);
     } }/>
-    <Button onClick={()=> {
+    <Button style={{display: "block"}} onClick={()=> {
       insertUser();
       navigate('/')
       }}>Sign Up!</Button>

@@ -17,6 +17,14 @@ export const testTheme= createTheme({
                 }
             }
         },
+        MuiTextField:{
+            styleOverrides:{
+                root:{
+                    margin: '0.5rem 0',
+                    borderRadius:'1.25rem',
+                }
+            }
+        },
         MuiCardMedia:{
             styleOverrides:{
                 root:{
@@ -33,6 +41,7 @@ export const testTheme= createTheme({
                     fontFamily:["Indie Flower", "cursive"].join(","),
                     margin: "1.25rem 0",
                     fontWeight: "bold",
+                    padding: '0 1.25rem',
                 }
             }
         },

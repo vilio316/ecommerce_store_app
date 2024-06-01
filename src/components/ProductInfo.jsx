@@ -37,7 +37,9 @@ export function ProductInfo(){
         <>
         <ThemeProvider theme={testTheme}>
             <Header/>
-        <Grid container spacing={1} justifyContent={"center"} alignContent={"center"} mb={3}>
+        <Grid container spacing={1} justifyContent={"center"} alignContent={"center"} alignItems={
+            'center'
+        } mb={3}>
             <Grid item xs={12} md={4} justifySelf={"center"} alignSelf={"center"}>
             <img 
                 className="rounded_images" 
