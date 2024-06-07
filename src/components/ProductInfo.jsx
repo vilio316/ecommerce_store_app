@@ -59,7 +59,7 @@ export function ProductInfo(){
                     <div className="product_desc">
                       <p>{product_data.description}</p>
                     </div>
-                    <label htmlFor="qty">Quantity:<button className="round_buttons" onClick={()=> {
+                    <label htmlFor="qty">Quantity:  <button className="round_buttons" onClick={()=> {
                         if(qty > 1) increaseQty((numb) => numb - 1)
                     }}>
                         -
@@ -71,12 +71,6 @@ export function ProductInfo(){
                          + </button> 
                    </label>
                    <form style={{margin: "0.5rem 0"}}>
-                       <input type="radio" name="payplan"></input>
-                       <label>One Time Purchase</label>
-                      
-                       <input type="radio" name="payplan"></input>
-                        <label>Instalments</label>
-                      
                       </form> 
                     <Button color="success" variant="outlined" onClick={
                         ()=>{ 

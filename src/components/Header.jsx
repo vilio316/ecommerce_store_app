@@ -36,7 +36,6 @@ export default function Header(){
             <div className="grid centered_items two_cols">
         <IconButton onClick={() => {
             dispatch(deleteID())
-            //dispatch(revertState())
             dispatch(priceReset())
             signOut();
             navigate('/');

@@ -35,13 +35,19 @@ export const {addItem, removeItem, revertState, refreshState} = cartSlice.action
 export const deleteFromSupa = (item, array, id)=> async(dispatch)=>{
    dispatch(removeItem(item));
    let str = item.name
-   console.log(str)
    const newArr = array.filter((member)=> member.name !== str )
-   console.log(newArr)
    const {data} = await supaInit.from("cart_updated").update({ 
     cart: newArr,
     item_number : array.length,
    }).eq("id", id);
 }
 
+export const clearSupa = (id) => async(dispatch)=> {
+    dispatch(revertState());
+    const newArray = [];
+    const {data, error} = await supaInit.from('cart_updated').update({
+        cart: newArray,
+        item_number: newArray.length,
+    }).eq('id', id)
+}
 

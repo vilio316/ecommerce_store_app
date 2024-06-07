@@ -7,7 +7,11 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { user_id } from "../features/cart/idSlice";
-
+import { useDispatch } from "react-redux";
+import { clearSupa } from "../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
+import { Badge } from "@mui/icons-material";
+import { ShoppingCartRounded } from "@mui/icons-material";
 
 const looper_for_total = (array) =>{
     let total = 0
@@ -58,7 +62,7 @@ return(
 function EmptyCart(){
     return(
         <>
-<Header/>
+       <Header/>
     <Typography paragraph variant="h3">
         Checkout
     </Typography>
@@ -68,7 +72,6 @@ function EmptyCart(){
     Nothing's in Your Cart Yet!
     </Typography>
     <p style={{textAlign:"center"}}>Click <a style={{textDecoration:"underline"}} href={`/home`}>here</a> to find exactly what fits you!</p>
-    
     </div>
     </div>
     <Footer/>
@@ -79,6 +82,9 @@ function EmptyCart(){
 
 function CartBody(props) {
     let cartes = props.cart
+    let dispatch = useDispatch();
+    let nav = useNavigate();
+    let iden = useSelector(user_id)
 
     return(
         <>
@@ -116,7 +122,7 @@ function CartBody(props) {
     )}
     <TableRow>
         <TableCell ><span style={{fontSize: "2.5rem", fontWeight:"bold"}}>Grand Total: </span></TableCell>
-        <TableCell align="right" colSpan={4}><span style={{fontSize: "2.5rem", fontWeight:"bold"}}>$ {looper_for_total(cartes)}</span></TableCell>
+        <TableCell align="right" colSpan={4}><span style={{fontSize: "2.5rem", fontWeight:"bold"}}>$ {looper_for_total(cartes).toFixed(2)}</span></TableCell>
     </TableRow>
             </TableBody> 
         </Table>
@@ -125,7 +131,10 @@ function CartBody(props) {
             <ShoppingCartCheckout/>
         < span style={{color:'white', padding:"0.5rem 0 "}}>Proceed to Checkout</span>
         </Button>
-        <Button color='error' variant="contained">
+        <Button color='error' variant="contained" onClick={() => {
+            dispatch(clearSupa(iden));
+            nav('/products/cart')
+        }}>
             <DeleteForeverRounded/>
             <span style={{color:'white', padding:"0.5rem 0 "}}>Clear Cart</span>
         </Button>
