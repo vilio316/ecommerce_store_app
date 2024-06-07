@@ -70,6 +70,12 @@ justify-content: center;
 .typ{
   height: 5rem;
 }
+.login_card{
+  width: 50%;
+  height: 80vh;
+  display: grid;
+  justify-content: center;
+}
 .no_deco{
   text-decoration: none;
 }

@@ -32,19 +32,18 @@ else{
 return(
   <>
   <Grid container justifyContent={"center"} alignContent={"center"}>
-  <Card>
-  <Typography>The DummyStore!</Typography>
-  <Typography>Welcome!</Typography>         
-  <TextField label="Email Address" autoFocus variant="outlined"  style={{display: "block"}} onChange={(e)=> {
+  <Card className="login_card">
+  <Typography variant="h4">The DummyStore!</Typography>
+  <Typography variant='h5'>Welcome!</Typography>             
+  <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
     setMail(e.target.value)
   }}/>
   <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
     setPwd(e.target.value)
   } }/>
-
-  <Button variant='contained' color="success"  style={{display: "block"}} onClick={()=> {albedo()}}>Sign In</Button>
+  <Button variant='outlined'  style={{display: "block"}} onClick={()=> {albedo()}}>Sign In</Button>
   <p ref={error_txt} style={{color: "red", fontSize:"1.5rem", fontWeight:"bold"}}></p>
-  <p>Don't have an account? <a href='/sign-up'>Sign Up</a></p>
+  <p>Don't have an account? <a href='/sign-up' style={{fontWeight:"bold"}}>Sign Up</a></p>
   </Card>
   </Grid>
   </>
@@ -83,22 +82,23 @@ return data
   return(
     <>
     <Grid container justifyContent={"center"} alignContent={"center"}>
-      <Card>
-  <Typography>The DummyStore!</Typography>
-  <Typography>Welcome!</Typography>     
+      <Card className="login_card">
+  <Typography variant='h4'>The DummyStore!</Typography>
+  <Typography variant='h5'>Welcome!</Typography>     
           <TextField label="Email Address" autoFocus variant="outlined" onChange={(e)=> {
       setMail(e.target.value);
-    }} style={{display: "block"}}/>
+    }}/>
     <TextField type="password" label="Password" variant="outlined" onChange={(e)=> {
       setPwd(e.target.value);
     } }/>
-    <Button style={{display: "block"}} onClick={()=> {
+    <Button variant="outlined" style={{display: "block"}} onClick={()=> {
       insertUser();
       navigate('/')
-      }}>Sign Up!</Button>
-   <p style={{display:"block", textAlign:"center"}}>Already have an account?
+      }}>Sign Up!
+      
+    </Button>
+   <p style={{display:"block", textAlign:"center"}}>Already have an account? <a href={'/'} style={{fontWeight:"bold"}}>Sign in here</a>
     </p>
-    <p className="center_text"><a href={'/'}><u>Sign in here</u></a></p>
     </Card>
     </Grid>
     </>

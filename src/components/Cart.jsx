@@ -10,8 +10,6 @@ import { user_id } from "../features/cart/idSlice";
 import { useDispatch } from "react-redux";
 import { clearSupa } from "../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { Badge } from "@mui/icons-material";
-import { ShoppingCartRounded } from "@mui/icons-material";
 
 const looper_for_total = (array) =>{
     let total = 0
@@ -117,7 +115,7 @@ function CartBody(props) {
                             </TableCell>
                         <TableCell align="right">{item.quantity}</TableCell>
                         <TableCell align="right">{item.price}</TableCell>
-                        <TableCell align="right">{Number(String(item.price)) * Number(String(item.quantity))}</TableCell>
+                        <TableCell align="right">{Number(String(item.price)).toFixed(2) * Number(String(item.quantity)).toFixed(2)}</TableCell>
                     </TableRow>
     )}
     <TableRow>
