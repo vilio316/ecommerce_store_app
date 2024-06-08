@@ -20,7 +20,7 @@ export const testTheme= createTheme({
         MuiTextField:{
             styleOverrides:{
                 root:{
-                    margin: '0.5rem 0',
+                    margin: '1rem 0',
                     borderRadius:'1.25rem',
                 }
             }
@@ -38,7 +38,7 @@ export const testTheme= createTheme({
         MuiTypography:{
             styleOverrides:{
                 root:{
-                    fontFamily:["Indie Flower", "cursive"].join(","),
+                    fontFamily:["Poppins", "sans-serif"].join(","),
                     margin: "1.25rem 0",
                     fontWeight: "bold",
                     padding: '0 1.25rem',

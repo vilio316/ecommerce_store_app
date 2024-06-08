@@ -62,14 +62,14 @@ function EmptyCart(){
         <>
        <Header/>
     <Typography paragraph variant="h3">
-        Checkout
+        Your Cart
     </Typography>
-    <div style={{display: 'grid', justifyItems:"center", alignItems:"center", height:"70vh"}}>
+    <div className="cart_empty" style={{display: 'grid', height:"70vh"}}>
     <div>
     <Typography paragraph variant="h2">
     Nothing's in Your Cart Yet!
     </Typography>
-    <p style={{textAlign:"center"}}>Click <a style={{textDecoration:"underline"}} href={`/home`}>here</a> to find exactly what fits you!</p>
+    <p style={{textAlign:"center"}}>Click <a style={{textDecoration:"underline"}} href={`/products/1`}>here</a> to find exactly what fits you!</p>
     </div>
     </div>
     <Footer/>
@@ -131,13 +131,13 @@ function CartBody(props) {
         </Button>
         <Button color='error' variant="contained" onClick={() => {
             dispatch(clearSupa(iden));
-            nav('/products/cart')
+            nav('/products/cart/');
         }}>
             <DeleteForeverRounded/>
             <span style={{color:'white', padding:"0.5rem 0 "}}>Clear Cart</span>
         </Button>
         </div>
-        <Footer></Footer>
+        <Footer/>
     </> 
     )
 }

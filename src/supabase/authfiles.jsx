@@ -1,7 +1,7 @@
 import supaInit from "./supaconfig"
 import { useState, useEffect, useRef } from "react"
 import { Button, Card, Grid, TextField, Typography } from "@mui/material"
-import { updateID, deleteID} from "../features/cart/idSlice"
+import { updateID, deleteID, addMail} from "../features/cart/idSlice"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
@@ -22,7 +22,8 @@ const { data, error } = await supaInit.auth.signInWithPassword({
 if(data.user){
 error_txt.current.innerHTML = ""
 dispatch(updateID(data.user.id))
-navigate('/home')
+dispatch(addMail(data.user.email))
+navigate('/products/1')
 }
 else{
   error_txt.current.innerHTML = "Incorrect Email or Password"

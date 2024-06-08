@@ -6,7 +6,6 @@ import { signOut } from "../supabase/authfiles";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteID } from "../features/cart/idSlice";
-import { revertState } from "../features/cart/cartSlice";
 import { priceReset } from "../features/cart/cartContentSlice";
 import supaInit from "../supabase/supaconfig";
 import { user_id } from "../features/cart/idSlice";
@@ -18,6 +17,7 @@ export default function Header(){
     let uuid = useSelector(user_id) 
     let navigate = useNavigate()
     let dispatch = useDispatch()
+    let [modal_state, setMod] = useState(false)
 
     useEffect(()=> {async function getNo(){ 
         const {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid);
@@ -26,6 +26,25 @@ export default function Header(){
     }
     getNo()
 }, [])
+
+function Modal(){
+    
+    return(
+        <>
+        {modal_state?
+        <>
+        <div></div>
+
+        
+        </> : 
+        
+        <>
+        
+        </>}
+        </>
+    )
+}
+
 
     return(
         <div className="grid five_cols centered_items nav_bar">
@@ -54,3 +73,4 @@ export default function Header(){
         </div>
     )
 }
+

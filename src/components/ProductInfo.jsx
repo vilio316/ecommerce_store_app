@@ -15,6 +15,7 @@ export function ProductInfo(){
     const identity = useSelector(user_id)
 
     let [cart_state, updateCartState] = useState([])
+
     useEffect(()=>{ async function fetchfromSupa(){
         const {data} = await supaInit.from("cart_updated").select("cart").eq("id", identity);
         updateCartState(data[0].cart);
@@ -53,25 +54,35 @@ export function ProductInfo(){
                     <Typography variant="h6">{product_data.title}</Typography>
                     <Rating defaultValue={product_data.rating} precision={0.25} readOnly/>
                     <span style={{fontStyle: "italic"}}>({product_data.rating})</span>
-                    <p></p>
                     <span className="product_price">${product_data.price.toFixed(2)}</span>
 
                     <div className="product_desc">
                       <p>{product_data.description}</p>
                     </div>
-                    <label htmlFor="qty">Quantity:  <button className="round_buttons" onClick={()=> {
+
+                    <div className="grid" id="qty_state" >
+                        <div>
+                    <label htmlFor="qty"> <p>Quantity: </p>  </label>
+                    </div>
+                    
+                    <div>
+                    <button className="round_buttons" onClick={()=> {
                         if(qty > 1) increaseQty((numb) => numb - 1)
                     }}>
                         -
-                        </button> 
-                        <input type="number" readOnly min={1} max={10} value={qty} id="qty" style={{margin: "0 0.5rem", outline: "none"}}/> 
+                        </button>
+
+                        <input type="number" readOnly min={1} max={10} value={qty} id="qty" style={{margin: "0 0.5rem", outline: "none"}}/>
+
+
                     <button color='success' className="round_buttons" onClick={()=>{
                         increaseQty((numb) => numb + 1)
                     }}>
                          + </button> 
-                   </label>
-                   <form style={{margin: "0.5rem 0"}}>
-                      </form> 
+                    </div>
+                   </div>
+
+                   <div className= "grid two_cols">
                     <Button color="success" variant="outlined" onClick={
                         ()=>{ 
                             updateCartState({...cart_state, productCartDetails})
@@ -93,6 +104,7 @@ export function ProductInfo(){
                         <Delete/>
                         Remove from Cart
                     </Button>
+                    </div>
                </CardContent>
            </Card>
        </Grid>
