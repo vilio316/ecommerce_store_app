@@ -5,7 +5,7 @@ import { cartLength } from "../features/cart/cartContentSlice";
 import { signOut } from "../supabase/authfiles";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteID } from "../features/cart/idSlice";
+import { deleteID, user_email } from "../features/cart/idSlice";
 import { priceReset } from "../features/cart/cartContentSlice";
 import supaInit from "../supabase/supaconfig";
 import { user_id } from "../features/cart/idSlice";
@@ -18,6 +18,8 @@ export default function Header(){
     let navigate = useNavigate()
     let dispatch = useDispatch()
     let [modal_state, setMod] = useState(false)
+    let email = useSelector(user_email)
+    
 
     useEffect(()=> {async function getNo(){ 
         const {data} = await supaInit.from("cart_updated").select("cart").eq("id", uuid);
@@ -27,40 +29,25 @@ export default function Header(){
     getNo()
 }, [])
 
-function Modal(){
-    
-    return(
-        <>
-        {modal_state?
-        <>
-        <div></div>
-
-        
-        </> : 
-        
-        <>
-        
-        </>}
-        </>
-    )
-}
-
-
     return(
         <div className="grid five_cols centered_items nav_bar">
             <p style={{fontSize:"1.5rem", fontWeight:"bold"}}><a href={'/'}>TheDummyStore</a></p>
             <a href={"/products/1"}>Products</a>
             <a>About Us</a>
             <a>Contact Us</a>
-            <div className="grid centered_items two_cols">
-        <IconButton onClick={() => {
-            dispatch(deleteID())
-            dispatch(priceReset())
-            signOut();
-            navigate('/');
-        }}
-        >
+            <div className="grid centered_items two_cols">  
+        <IconButton onMouseEnter={()=> setMod(true)} onMouseLeave={()=> setMod(false)} style={{position: "relative"}}>
             <Person color="secondary"/>
+            {modal_state ? <div style={{position: "absolute", left:"0", zIndex:"1", width:'7.5rem'}}>
+        <p>{email}</p>
+        <ul>
+            <li>Your Cart</li>
+            <li>Offers & Discounts</li>
+            <li>Payment Methods</li>
+            <li>Sign Out</li>
+        </ul>
+       </div> : <div></div>
+       }
         </IconButton>
         <IconButton>
             <a href={'/products/cart'}>
@@ -69,6 +56,8 @@ function Modal(){
        </Badge>
        </a> 
        </IconButton>
+
+      
             </div>
         </div>
     )

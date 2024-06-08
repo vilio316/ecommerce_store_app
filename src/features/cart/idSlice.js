@@ -22,5 +22,6 @@ const id_to_store = createSlice({
 })
 
 export const user_id = (state) => state.uuid.id_val
+export const user_email = (state) => state.uuid.email_val
 export default id_to_store.reducer
 export const {updateID, deleteID, addMail} = id_to_store.actions
