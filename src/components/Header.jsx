@@ -1,4 +1,4 @@
-import { Person, ShoppingCartRounded } from "@mui/icons-material";
+import { Logout, Person, ShoppingCartRounded } from "@mui/icons-material";
 import { Badge, Icon, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
 import { cartLength } from "../features/cart/cartContentSlice";
@@ -38,13 +38,22 @@ export default function Header(){
             <div className="grid centered_items two_cols">  
         <IconButton onMouseEnter={()=> setMod(true)} onMouseLeave={()=> setMod(false)} style={{position: "relative"}}>
             <Person color="secondary"/>
-            {modal_state ? <div style={{position: "absolute", left:"0", zIndex:"1", width:'7.5rem'}}>
-        <p>{email}</p>
-        <ul>
-            <li>Your Cart</li>
+            {modal_state ? <div style={{position: "absolute", left:"-12.5rem", top:"2.5rem", padding: '0.5rem', zIndex:"1", backgroundColor:"rgba(255,55,25, 0.85)", borderRadius:"1.5rem", }}>
+        <p style={{fontWeight:"bold"}}>{email}</p>
+        <ul style={{listStyleType:"none"}}>
+            <li><a href={'/products/cart'}>Your Cart</a></li>
             <li>Offers & Discounts</li>
             <li>Payment Methods</li>
-            <li>Sign Out</li>
+            <button  style={{outline :"none", border: "none", backgroundColor: "red", borderRadius:"1.5rem", padding: "0.5rem"}} onClick={() => {
+            dispatch(deleteID())
+            dispatch(priceReset())
+            signOut();
+            navigate('/');
+        }}>
+            <Icon>
+                <Logout/>
+            </Icon>
+            Sign Out</button>
         </ul>
        </div> : <div></div>
        }
