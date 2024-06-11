@@ -119,6 +119,7 @@ a:hover{
   }
   .login_card{
     width: 75%;
+    height: 70vh;
   }
   .cart_empty{
     height: 50vh;
