@@ -11,9 +11,9 @@ export const testTheme= createTheme({
         MuiCard:{
             styleOverrides:{
                 root:{
-                    borderRadius: "1.5rem", 
-                    margin: "1rem",
-                    padding:'1rem',
+                    borderRadius: "1.25rem",
+                    padding:'0.5rem',
+                    margin: "0",
                 }
             }
         },

@@ -13,7 +13,7 @@ return(
       <Card className="styled_card">
         <CardContent>        
         <CardActionArea LinkComponent={"a"} href={`/product/${product.id}`}>
-        <CardMedia className="card_image" component={"img"} alt={product.title} src={product.images[0]} height={200}/>
+        <CardMedia className="card_image" component={"img"} alt={product.title} src={product.images[0]} height={250}/>
           <Typography className='typ' variant="h5">{product.title}</Typography>
           <p className="desc_p">{product.description}</p>
           <p className='product_price'>${product.price.toFixed(2)}</p>
@@ -44,7 +44,7 @@ export default function ProductsHomepage() {
         <>
         <Header/>
         <Typography paragraph variant="h4">All Products</Typography>
-        <Grid container spacing={1.5} marginBottom={1.5}>
+        <Grid container spacing={1} marginBottom={1}>
         {ostriches.map((product) => <ProductCard entry={product} key={product.id}/> )}
         </Grid>
         <p style={{width: "100%", textAlign:"center"}}>Showing {ostriches[0].id} - {ostriches[19].id} of 100</p>
