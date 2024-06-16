@@ -9,8 +9,7 @@ export function ProductCard(props){
 let [omega, useOmega] = useState(true);
 return(
   <Grid item xs={6} md={3} key={product.title}>
-    <div className="grid centered_items">
-      <Card className="styled_card">
+      <Card>
         <CardContent>        
         <CardActionArea LinkComponent={"a"} href={`/product/${product.id}`}>
         <CardMedia className="card_image" component={"img"} alt={product.title} src={product.images[0]} height={250}/>
@@ -32,7 +31,6 @@ return(
           </div>
         </CardContent>
         </Card>
-        </div>
         </Grid>
 )
 }
@@ -44,7 +42,7 @@ export default function ProductsHomepage() {
         <>
         <Header/>
         <Typography paragraph variant="h4">All Products</Typography>
-        <Grid container spacing={1} marginBottom={1}>
+        <Grid container spacing={2} marginBottom={1} marginTop={1}>
         {ostriches.map((product) => <ProductCard entry={product} key={product.id}/> )}
         </Grid>
         <p style={{width: "100%", textAlign:"center"}}>Showing {ostriches[0].id} - {ostriches[19].id} of 100</p>

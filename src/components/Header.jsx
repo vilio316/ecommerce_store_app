@@ -35,10 +35,10 @@ export default function Header(){
             <a href={"/products/1"}>Products</a>
             <a>About Us</a>
             <a>Contact Us</a>
-            <div className="grid centered_items two_cols">  
+            <div id="stay">  
         <IconButton onMouseEnter={()=> setMod(true)} onMouseLeave={()=> setMod(false)} style={{position: "relative"}}>
             <Person color="secondary"/>
-            
+
             {modal_state ? <div style={{position: "absolute", left:"-12.5rem", top:"2.5rem", padding: '0.5rem', zIndex:"1", backgroundColor:"rgba(255,55,25, 0.85)", borderRadius:"1.5rem", }}>
         <p style={{fontWeight:"bold"}}>{email}</p>
         <ul style={{listStyleType:"none"}}>
