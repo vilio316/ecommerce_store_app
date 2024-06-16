@@ -43,7 +43,7 @@ return(
     setPwd(e.target.value)
   } }/>
   <Button variant='outlined'  style={{display: "block"}} onClick={()=> {albedo()}}>Sign In</Button>
-  <p ref={error_txt} style={{color: "red", fontSize:"1.5rem", fontWeight:"bold"}}></p>
+  <p ref={error_txt} style={{color: "red", fontSize:"1rem", fontWeight:"bold"}}></p>
   <p>Don't have an account? <a href='/sign-up' style={{fontWeight:"bold"}}>Sign Up</a></p>
   </Card>
   </Grid>

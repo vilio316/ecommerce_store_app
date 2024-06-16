@@ -39,13 +39,13 @@ export default function Header(){
         <IconButton onMouseEnter={()=> setMod(true)} onMouseLeave={()=> setMod(false)} style={{position: "relative"}}>
             <Person color="secondary"/>
 
-            {modal_state ? <div style={{position: "absolute", left:"-12.5rem", top:"2.5rem", padding: '0.5rem', zIndex:"1", backgroundColor:"rgba(255,55,25, 0.85)", borderRadius:"1.5rem", }}>
+            {modal_state ? <div  className="top_mod" style={{position: "absolute", left:"-12.5rem", top:"2.5rem", padding: '0.5rem', zIndex:"1", backgroundColor:"rgba(255,55,25)", borderRadius:"1.5rem", }}>
         <p style={{fontWeight:"bold"}}>{email}</p>
         <ul style={{listStyleType:"none"}}>
             <li><a href={'/products/cart'}>Your Cart</a></li>
             <li>Offers & Discounts</li>
             <li>Payment Methods</li>
-            <button  style={{outline :"none", border: "none", backgroundColor: "red", borderRadius:"1.5rem", padding: "0.5rem"}} onClick={() => {
+            <p  style={{outline :"none", border: "none", backgroundColor: "red", borderRadius:"1.5rem", padding: "0.5rem"}} onClick={() => {
             dispatch(deleteID())
             dispatch(priceReset())
             signOut();
@@ -54,7 +54,7 @@ export default function Header(){
             <Icon>
                 <Logout/>
             </Icon>
-            Sign Out</button>
+            Sign Out</p>
         </ul>
        </div> : <div></div>
        }

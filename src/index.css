@@ -132,4 +132,8 @@ a:hover{
   .cart_empty{
     height: 50vh;
   }
+  ul{
+    margin: 0;
+    padding: 0;
+  }
 }
