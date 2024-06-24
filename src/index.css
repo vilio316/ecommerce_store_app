@@ -115,7 +115,7 @@ a:hover{
   opacity: 0.75;
   font-style: italic;
 }
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .grid{
     grid-template-columns: auto;
     place-items: center;
@@ -128,6 +128,7 @@ a:hover{
   }
   .login_card{
     width: 85%;
+    height: 70%;
   }
   .cart_empty{
     height: 50vh;
