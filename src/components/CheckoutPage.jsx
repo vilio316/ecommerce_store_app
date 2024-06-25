@@ -27,9 +27,14 @@ useEffect(()=> {async function getCart(){
 
 function checkDisc(parameter){
     let param = parameter.toUpperCase()
-    if(discount_codes.indexOf(parameter) !== -1){
-        let disc_charge = 0.05 * discount_codes.indexOf(parameter) 
+    if(discount_codes.indexOf(param) !== -1){
+        let disc_charge = 0.05 * discount_codes.indexOf(param) 
         changePercent(disc_charge)
+        alert(`${disc_charge * 100}% Discount Applied`)
+    }
+    else{
+        changePercent(0);
+        alert('Invalid Code Provided')
     }
 }
     return(
