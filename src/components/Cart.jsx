@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { clearSupa } from "../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
 
-const looper_for_total = (array) =>{
+export const looper_for_total = (array) =>{
     let total = 0
     for (let i = 0; i < array.length; i++){
         total += (array[i].price * array[i].quantity)
@@ -21,7 +21,6 @@ const looper_for_total = (array) =>{
 
 export default function Cart(){
 let [cart, cartLoad] = useState([])
-let [grandTotal, updateTotal] = useState(0)
 let user = useSelector(user_id)
 let [cart_size, setTrue] = useState(false)
 
@@ -31,9 +30,6 @@ let [cart_size, setTrue] = useState(false)
     const {data, error} = await supaInit.from("cart_updated").select("cart").eq("id", user);
     let omniverse = data[0].cart
     cartLoad(...cart, omniverse)
-    for(let i =0; i < omniverse.length; i++){
-        updateTotal((state) => state += (omniverse[i].quantity * omniverse[i].price))
-    }
     if(omniverse.length > 0){
         setTrue(true)
     }
@@ -115,7 +111,7 @@ function CartBody(props) {
                             </TableCell>
                         <TableCell align="right">{item.quantity}</TableCell>
                         <TableCell align="right">{item.price}</TableCell>
-                        <TableCell align="right">{Number(String(item.price)).toFixed(2) * Number(String(item.quantity)).toFixed(2)}</TableCell>
+                        <TableCell align="right">{Number(Number(String(item.price)).toFixed(2) * Number(String(item.quantity)).toFixed(2)).toFixed(2)}</TableCell>
                     </TableRow>
     )}
     <TableRow>
@@ -125,7 +121,7 @@ function CartBody(props) {
             </TableBody> 
         </Table>
         <div className="grid centered_items" style={{gridTemplateColumns:"auto auto", justifyContent:"center", gap:"1rem"}}>
-        <Button color="success"  variant="contained">
+        <Button color="success"  variant="contained" onClick={()=> nav('/checkout')}>
             <ShoppingCartCheckout/>
         < span style={{color:'white', padding:"0.5rem 0 "}}>Proceed to Checkout</span>
         </Button>

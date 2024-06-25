@@ -13,6 +13,7 @@ import { testTheme } from './assets/mui_themes/themes.js'
 import { SignInWmail, SignUp } from './supabase/authfiles.jsx'
 import { fetchID, fetchProductInfo, fetchProducts} from './loaders/loaders.jsx'
 import { PersistGate } from 'redux-persist/integration/react'
+import { CheckoutPage } from './components/CheckoutPage.jsx'
 
 const availableRoutes = createBrowserRouter([
   {
@@ -64,7 +65,12 @@ loader: ()=>{
   element: <App/>, 
   loader: ()=> {return fetchProducts(4,0)}, 
   errorElement: <ErrorPage/>
-}
+},
+{
+  path: '/checkout',
+  element: <CheckoutPage/>,
+  errorElement: <ErrorPage/>
+},
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>

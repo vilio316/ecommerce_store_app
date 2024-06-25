@@ -15,6 +15,14 @@ html{
 body{
   display: grid;
 }
+#checkout_container{
+  grid-template-columns: 20% 60% auto;
+  justify-self: center;
+}
+#checkout_container > div{
+  align-content: center;
+  align-items: center;
+}
 .five_cols{
 grid-template-columns: auto auto auto auto auto;
 }

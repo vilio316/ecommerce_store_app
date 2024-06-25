@@ -8,6 +8,5 @@ export {supabaseURL}
 let supaInit = createClient(supabaseURL, supabaseKey)
 
 export default supaInit;
-
 const cart_channel = supaInit.channel("cartUpdates").on('postgres_changes', 
 {event: "*", schema: "public", table:"cart_updated"}).subscribe()
