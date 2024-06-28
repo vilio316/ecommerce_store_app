@@ -83,6 +83,10 @@ function checkDisc(parameter){
                     <p>Discount Applied:</p>
                     <p style={{textAlign:"end"}}> -{(gt * disc_percent).toFixed(2)}</p>
                 </div>
+                <div className="grid" style={{gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
+                    <p>Total: </p>
+                    <p style={{textAlign:"end"}}> {(gt + 12 - (gt * disc_percent)).toFixed(2)}</p>
+                </div>
             </div>
             
             <Footer/>
