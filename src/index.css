@@ -16,8 +16,8 @@ body{
   display: grid;
 }
 #checkout_container{
+  display: grid;
   grid-template-columns: 20% 60% auto;
-  justify-self: center;
 }
 #checkout_container > div{
   align-content: center;
@@ -76,9 +76,10 @@ justify-content: center;
   place-items: center;
 }
 .desc_p{
-  width: 100%;
+  width: 10rem;
   height: 5rem;
   text-overflow: ellipsis;
+  white-space: wrap;
   padding: 0.25rem 0.5rem;
   overflow: hidden;
 }
@@ -124,6 +125,7 @@ a:hover{
   font-style: italic;
 }
 @media screen and (max-width: 768px) {
+  
   .grid{
     grid-template-columns: auto;
     place-items: center;

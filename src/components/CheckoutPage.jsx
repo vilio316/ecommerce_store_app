@@ -46,10 +46,9 @@ function checkDisc(parameter){
             <Typography variant="h4">
                 Order Details
             </Typography>
-            <div style={{width: "100%", padding:"0.5rem"}}>
+            <div style={{width: "100%", padding:"0.5rem", display:"grid", margin:"1rem 0"}} > 
                 {cart.map((item) => (
-                    <>
-                    <div className="grid three_cols" id="checkout_container" key={item.name}>
+                    <div className="three_cols" id="checkout_container" key={item.id}>
                         <div>
                             <img src={item.thumbnail} alt={item.name} style={{width: '90%', opacity: "0.85", borderRadius:"1.5rem"}}/>
                         </div>
@@ -61,34 +60,35 @@ function checkDisc(parameter){
                             <p style={{textAlign:"end"}}>  {Number(Number(String(item.price)).toFixed(2) * Number(String(item.quantity)).toFixed(2)).toFixed(2)}  </p>
                         </div>
                     </div>
-                    </>
                 ))}
             </div>
 
             <div className="grid two_cols" style={{gap: '1rem'}}>
-            <input id='discount' type="text" onChange={(e)=> {setDiscountCode(e.target.value); console.log(discount_code)}} style={{outline: 'none', border: '5px solid blue', borderRadius:"1.25rem", fontSize: "1.5rem", padding:"0 0.5rem", textIndent:"1.5rem"}} />
-            <button onClick={()=> checkDisc(discount_code)}>Check Discount Code!</button>
+            <input id='discount' type="text" onChange={(e)=> {setDiscountCode(e.target.value)}} style={{outline: 'none', border: '5px solid blue', borderRadius:"1.25rem", fontSize: "1.5rem", padding:"0 0.5rem", textIndent:"1.5rem"}} />
+            <button onClick={()=> checkDisc(discount_code)} style={{borderRadius:"1.5rem", border: 'none', outline:"none"}}>Check Discount Code!</button>
             </div>
 
             <div style={{width: "100%", display:"grid"}}>
-                <div className="grid" style={{gridTemplateColumns:"auto auto", justifySelf:"center", width: "90%", padding:"0.5rem"}}>
-                    <p>Total:</p>
+                <div style={{display:'grid', gridTemplateColumns:"auto auto", justifySelf:"center", width: "90%", padding:"0.5rem"}}>
+                    <p>Subtotal:</p>
                     <p style={{textAlign:"end"}}>{gt}</p>
                 </div>
-                <div className="grid" style={{gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
-                    <p>Delivery Surcharge:</p>
-                    <p style={{textAlign:"end"}}> +12.00</p>
-                </div>
-                <div className="grid" style={{gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
+                <div style={{ display:'grid', gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
                     <p>Discount Applied:</p>
                     <p style={{textAlign:"end"}}> -{(gt * disc_percent).toFixed(2)}</p>
                 </div>
-                <div className="grid" style={{gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
-                    <p>Total: </p>
-                    <p style={{textAlign:"end"}}> {(gt + 12 - (gt * disc_percent)).toFixed(2)}</p>
+                <div style={{ display:'grid', gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
+                    <p>Delivery Surcharge:</p>
+                    <p style={{textAlign:"end"}}> +{(0).toFixed(2)} </p>
+                </div>
+                <div style={{ display:'grid', gridTemplateColumns:"auto auto", justifySelf:"center", padding:"0.5rem", width:"90%"}}>
+                    <p>Grand Total:</p>
+                    <p style={{textAlign:"end"}}>{ gt - (gt * disc_percent)} </p>
                 </div>
             </div>
-            
+            <div className="grid">
+                <button style={{margin:"1rem 0"}}>Pay Now!</button>
+            </div>
             <Footer/>
         </>
     )
